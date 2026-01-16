@@ -1,0 +1,11 @@
+x = number
+y = number
+x1 = number
+y1 = number
+snake1 = [(0,0),(0,1),(0,2)]
+snake2 = [(10,10),(10,11),(10,12)]
+food = (x3,y3）
+print(f"snake1的位置是:{snake1}")
+print(f"snake2的位置是:{snake2}")
+print(f"food的位置是:{food}")
+
