@@ -10,3 +10,6 @@
 #git config --list --show-origin 查看所有git配置及其来源
 #git config --list --scopy --show-origin 查看所有git配置的详细来源（包含覆盖关系）
 #优先级：本地>全局>系统
+#git add文件名 添加文件到暂存区
+#git commit -m"日志信息"   保存到本地库
+#git reflog 查看版本信息
