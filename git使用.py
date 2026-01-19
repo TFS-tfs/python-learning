@@ -13,3 +13,4 @@
 #git add文件名 添加文件到暂存区
 #git commit -m"日志信息"   保存到本地库
 #git reflog 查看版本信息
+#git reset --hard 版本号    版本穿梭
