@@ -14,3 +14,4 @@
 #git commit -m"日志信息"   保存到本地库
 #git reflog 查看版本信息
 #git reset --hard 版本号    版本穿梭
+#git push origin 分支名  上传本地库文件到远程库
