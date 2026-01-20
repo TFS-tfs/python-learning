@@ -1,6 +1,6 @@
 formatter = "{}{}{}{}"#定义一个字符串变量formatter,他的值是{}，{}，{}，{}。这是一个模板，可以按顺序在{}内填入对应的值。
 
-print(formatter.format(1,2,3,4))#对应填土1，2，3，4在前面变量formatter的值{}{}{}{}中
+print(formatter.format(1,2,3,4))#对应填入1，2，3，4在前面变量formatter的值{}{}{}{}中
 print(formatter.format("one","two","three","four"))#同上
 print(formatter.format(True,False,False,True))
 print(formatter.format(formatter,formatter,formatter,formatter))
