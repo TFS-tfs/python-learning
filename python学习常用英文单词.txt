@@ -1,0 +1,15 @@
+整数(int)     1，-5，100
+浮点数(float)        3.14,-0.001,2.0
+字符串(str)      'Hello',"Python","'Mult-line"'
+列表(list)   [1,2,3],['a','b','c']
+字典(dict)   {'name':'Alice','age':30}           (dictionary)
+布尔值(bool)     Ture,False
+元组(tuple)    (1,2,3),('a','b','c')
+集合(set)    {1,2,3},{'apple','banana'}
+蟒蛇(Python)
+故障(虫子）(Bug)
+窗口(windows)
+下载(downloads)
+安装(install)
+成功(successful)
+退出(exit)

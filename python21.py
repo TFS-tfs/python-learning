@@ -1,6 +1,6 @@
 from sys import argv #从sys模块中取出argv功能
 
-script,user_name = argv#定义变量script,user_name       script脚本
+script,user_name,animals = argv#定义变量script,user_name       script脚本
 prompt = '> '#定义变量prompt,值为字符串'> '           prompt提示符
 prompt2 = "How old are you? > "
 print(f"Hi {user_name},I'm the {script} script.")#输出格式化字符串
@@ -17,5 +17,6 @@ print(f"""
 Alright,so you said {likes} about liking me.
 You are {ages} years old.
 You live in {lives}. Not sure where that is.
+You like {animals}.That's cool.
 And you have a {computer} computer.Nice.
      """)#好的，你说了  来表示是否喜欢我。你住在  ，不太确定那是哪。你有一台  电脑。漂亮，
