@@ -1,0 +1,3 @@
+This is stuff I typed into a file.#这是一个我打印在文件里的东西。
+It is really cool stuff.#它是真的非常酷的东西。
+Lots and lots of fun to have in here.#有大量的乐子在那儿。
