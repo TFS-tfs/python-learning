@@ -7,9 +7,12 @@
 元组(tuple)    (1,2,3),('a','b','c')
 集合(set)    {1,2,3},{'apple','banana'}
 蟒蛇(Python)
-故障(虫子）(Bug)
+故障(虫子)(Bug)
 窗口(windows)
 下载(downloads)
 安装(install)
 成功(successful)
 退出(exit)
+练习 (practice 美式英语n/v) (practise英式英语v    practice n)   (exercise  n/v) (training 系统性练习) (rehearsal  彩排性练习)
+lots and lot 许多
+stuff 东西

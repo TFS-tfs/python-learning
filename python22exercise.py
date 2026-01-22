@@ -1,0 +1,11 @@
+txt = input("> Which file do you want to open?")
+print("Here's your file:")
+txt2=open(txt,encoding='utf-8')
+print(txt2.read())
+txt2.close()
+print("Type the filename again:")
+
+file_again = input("> Which file do you want to open again?")
+file_again2 = open(file_again,encoding='utf-8')
+print(file_again2.read())
+file_again2.close()
