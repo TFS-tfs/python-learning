@@ -9,8 +9,8 @@ print("If you do want that,hit RETURN.")#输出字符串“如果你想要那个
 input("?")#input提示“？”与用户交互
 
 print("Opening the file...")#输出字符串“打开文件......”
-target = open(filename,'w')#设置变量target,值为右边open函数打开的文件对象。  或者可以说，以写入模式打开文件filename。如果文件存在，则清除，然后重头写入；如果文件不存在，则创建文件。
-
+target = open(filename,'w+',encoding = 'UTF-8')#设置变量target,值为右边open函数打开的文件对象。  或者可以说，以写入模式打开文件filename。如果文件存在，则清除，然后重头写入；如果文件不存在，则创建文件。
+#W+模式也会和w模式一样清空文件，创建文件，不过在下面用seek(0)后不用再打开文件倒是好事情
 print("Truncating the file.Goodbye!")#输出字符串“清除文件，再见！”
 target.truncate()#清除文件     target:目标
 
@@ -22,12 +22,11 @@ line3 = input("line 3:")
 
 print("I'm going to write these to the file.")#输出字符串“我将要写入这些在文件里”
 
-target.write(line1)#写入变量line1
-target.write("\n")#写入换行符
-target.write(line2)#同上
-target.write("\n")
-target.write(line3)
-target.write("\n")
-
+target.write(f"""{line1}
+{line2}
+{line3}
+             """)
 print("And finally,we close it.")#输出字符串“最后，我们关掉它”
-target.close()#关闭文件
+target.seek(0)
+print(target.read())
+target.close()
