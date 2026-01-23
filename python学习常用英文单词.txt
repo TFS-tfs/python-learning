@@ -19,3 +19,4 @@ stuff 东西
 erase 清除  truncate
 hit   按下
 target 目标
+calculate 计算
