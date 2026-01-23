@@ -16,3 +16,6 @@
 练习 (practice 美式英语n/v) (practise英式英语v    practice n)   (exercise  n/v) (training 系统性练习) (rehearsal  彩排性练习)
 lots and lot 许多
 stuff 东西
+erase 清除  truncate
+hit   按下
+target 目标
