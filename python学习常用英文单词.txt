@@ -20,3 +20,4 @@ erase 清除  truncate
 hit   按下
 target 目标
 calculate 计算
+creama 相机
