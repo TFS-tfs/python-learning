@@ -21,3 +21,10 @@ hit   按下
 target 目标
 calculate 计算
 creama 相机
+cheese 奶酪
+box 盒子
+directly 直接地
+function 函数
+combine 加
+blanket 毯子
+cracker 饼干
