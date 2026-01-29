@@ -25,6 +25,6 @@ cheese 奶酪
 box 盒子
 directly 直接地
 function 函数
-combine 加
+combine 加  add         subtract减        multiply乘     divide除
 blanket 毯子
-cracker 饼干
+cracker 饼干  
