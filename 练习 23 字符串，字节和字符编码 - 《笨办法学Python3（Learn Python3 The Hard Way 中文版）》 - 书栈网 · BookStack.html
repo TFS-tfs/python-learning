@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<!-- saved from url=(0074)https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.28.learn-py3.md -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack</title>
+    <meta name="keywords" content="书栈网,BookStack,Python,Python3">
+    <meta name="description" content="练习 23 字符串，字节和字符编码初始研究开关、惯例（conventions）和编码分解输出结果分解代码深入了解编码拆解 这本书指导你通过练习和记忆逐渐建立起 Python 的使用技巧，然后用在更复杂的问题上。学完本书，你将会拥有开始学习更复杂编程所需的工具。我很喜欢告诉别人，我的书可以让你拥有“编程黑带”，也就是你已经掌握要开始学习编程的最基本的知识。">
+    <link href="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/bootstrap.min.css" rel="stylesheet">
+    <link href="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/font-awesome.min.css" rel="stylesheet">
+    <link href="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/nprogress.css" rel="stylesheet">
+    <link href="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/editormd.preview.css" rel="stylesheet">
+    <link href="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/toast.css" rel="stylesheet">
+    <link href="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/page.css" rel="stylesheet">
+    <link rel="stylesheet" href="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/katex.min.css">
+	<link rel="stylesheet" href="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/mindmap.css">
+    <script src="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/hm.js.下载"></script><script src="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/html5shiv.min.js.下载"></script>
+    <script src="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/respond.min.js.下载"></script>
+    <link href="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/bookstack.css" rel="stylesheet">
+
+    <style>
+        .editormd-preview-container ol.linenums li code, .editormd-html-preview ol.linenums li code{
+            display: block;
+            white-space: pre;
+        }
+        li.L1, li.L3, li.L5, li.L7, li.L9{background-color: transparent;}
+        .editormd-preview-container pre.prettyprint, .editormd-html-preview pre.prettyprint{border-color: transparent;}
+        body{-webkit-overflow-scrolling:touch;}
+        .alink,.alink a{color: #888 !important;}
+        .alink.text-red a{color: #333 !important;}
+        .alink:hover,.alink a:hover{color: red !important;}
+        .alink.text-red a:hover{color: red !important;}
+
+          
+        .manual-right { background: #f4f5f7; padding: 20px; overflow-y: auto; }
+        .manual-article { background: #fff; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.05); padding: 30px 50px; max-width: 960px; margin: 0 auto; min-height: 100%; }
+        
+        #article-title { font-size: 30px; font-weight: 700; color: #262626; margin-bottom: 25px; text-align: center; }
+        
+        .article-info { color: #999; font-size: 13px; margin-bottom: 30px; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 20px; border-bottom: 1px dashed #eee; padding-bottom: 15px; }
+        .article-info span { display: inline-flex; align-items: center; }
+        .article-info i { margin-right: 5px; }
+        .article-info a { color: #999; }
+        .article-info a:hover { color: #008cff; }
+
+        .markdown-body { font-size: 16px; line-height: 1.8; color: #333; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+        .markdown-body h1, .markdown-body h2, .markdown-body h3 { margin-top: 35px; margin-bottom: 20px; font-weight: 600; color: #1f1f1f; }
+        .markdown-body p { margin-bottom: 16px; text-align: justify; }
+        .markdown-body img { max-width: 100%; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    </style>
+</head>
+<body>
+
+
+
+<div class="modal fade" id="ModalNote" tabindex="-1" role="dialog" aria-labelledby="ModalReplaceLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span></button>
+				<h1 class="modal-title" id="ModalReplaceLabel" style="align:center;">思维导图备注</h1></div>
+			<div class="modal-body" style="overflow-y:auto; height:400px;"></div>
+			<div class="modal-footer">
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="m-manual manual-mode-view manual-reader">
+    <header class="navbar navbar-static-top manual-head" role="banner">
+        <div class="container-fluid">
+            <div class="navbar-header pull-left manual-title">
+                <span class="slidebar" id="slidebar"><i class="fa fa-align-justify"></i></span>
+                <a href="https://www.bookstack.cn/books/LearnPython3TheHardWay" title="笨办法学Python3（Learn Python3 The Hard Way 中文版）" class="book-title">笨办法学Python3（Learn Python3 The Hard Way 中文版）</a>
+                <span style="font-size: 12px;font-weight: 100;"></span>
+            </div>
+            <div class="navbar-header pull-right manual-menu">
+                <div class="bookstack-item">
+                    <a title="首页" href="https://www.bookstack.cn/" class="btn btn-link"><i class="fa fa-home"></i> 首页</a>
+                    
+                        
+                            <a href="javascript:;" rel="nofollow" data-placement="bottom" style="color: red !important;" class="btn btn-link show-bot tooltips" data-id="212793" data-original-title="" title=""><span><i class="fa-reddit-alien fa"></i> AI助手</span>
+                            </a>
+                        
+                    
+                    <a href="javascript:;" class="btn btn-link btn-theme">
+                        <span class="tooltips sun" title="" data-placement="bottom" data-original-title="切换白天浅色模式"><i class="fa fa-sun-o"></i> 白天</span>
+                        <span class="tooltips moon" title="" data-placement="bottom" data-original-title="切换夜间深色模式"><i class="fa fa-moon-o"></i> 夜间</span>
+                    </a>
+                    
+                    <a title="BookChat 小程序" href="javascript:" data-toggle="modal" data-target="#ModalBookChat" class="btn btn-light">
+                        <img src="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/wxacode.png" style="position: relative;top:-2px;" alt="BookChat 小程序"> <span>小程序</span></a>
+                    
+                    
+                    <a href="https://www.bookstack.cn/record/3191" rel="nofollow" class="btn btn-link showModalHistory tooltips" title="" data-placement="bottom" data-original-title="历史阅读记录"><i class="fa fa-clock-o"></i> 阅读</a>
+                    <span class="dropdown">
+                        <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            书签 <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li>
+                                <a rel="nofollow" href="https://www.bookstack.cn/bookmark/list/3191" title="查看书签" data-bookid="3191" class="showModalBookmark">
+                                    <img src="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/icon-bookmark-list.png" alt="书签"> 我的书签
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.bookstack.cn/bookmark/" data-docid="212793" rel="nofollow" class="bookmark-action">
+                                    <span class="bookmark-add "> <img src="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/icon-bookmark-add.png" alt="添加书签"> 添加书签</span>
+                                    <span class="bookmark-remove hide"> <img src="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/icon-bookmark-remove.png" alt="移除书签"> 移除书签</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </span>
+
+                    
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container-fluid manual-body">
+
+        <div class="manual-right">
+            <div class="manual-article">
+                <div class="article-head">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-10 col-md-offset-1 col-xs-12 text-center">
+                                <h1 id="article-title">练习 23 字符串，字节和字符编码</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="article-content">
+                    <div class="help-block article-info" style="padding-bottom: 20px;">
+                        
+                            <span class="alink tooltips text-red" title="" data-original-title="关注译者"><a target="_blank" rel="nofollow" href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.1.learn-py3.md"><i class="fa fa-hand-o-right"></i>&nbsp;关注译者</a></span>
+                        
+
+                        
+                            <span class="alink tooltips text-red" title="" data-original-title="内容来自【爱学习的ai酱 译】。如果收录时间太久，请点击当前链接到源站进行阅读学习"><a target="_blank" title="内容来源" href="https://www.zybuluo.com/Standalone/note/1677177"><i class="fa fa-globe"></i>&nbsp;来源:爱学习的ai酱 译</a></span>
+                        
+                        <span><i class="fa fa-eye"></i> 浏览 <i class="read-count">7274</i></span>
+                        <span class="hidden-xs"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.28.learn-py3.md#" data-target="#ModalQRcode" data-toggle="modal"><i class="fa fa-qrcode"></i> 扫码</a></span>
+                        <span class="pull-right hidden-xs tooltips" title="" data-original-title="更新时间"><i class="fa fa-clock-o"></i> <i class="updated-at">2020-03-16 07:58:43</i></span>
+                    </div>
+                    
+                        <div class="ap ap-content-top mgb-15px">
+                            <div class="text-center" style="background-color:#efefef;max-height:90px;overflow:hidden;margin-top:10px;">
+<a href="https://passport.compshare.cn/register?referral_code=AHZaK3wncyNEkACqnT2gp3&amp;ytag=GPU_YY_YX_bookstack" target="_blank"><img style="max-width:100%;max-height:90px;" src="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/18838a475f42c2c6.png"></a>
+</div>
+                        </div>
+                    
+                    <article data-iframe="https://static.sitestack.cn/static/pdfjs/web/viewer.html?file=" class="article-body  markdown-body editormd-preview-container " id="page-content">
+                    <div class="markdown-toc editormd-markdown-toc"><ul class="markdown-toc-list"><li><a class="toc-level-1 active" href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.28.learn-py3.md#7wddfg" level="1" title="练习 23 字符串，字节和字符编码">练习 23 字符串，字节和字符编码</a><ul><li><a class="toc-level-2" href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.28.learn-py3.md#czr5t0" level="2" title="初始研究">初始研究</a></li><li><a class="toc-level-2" href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.28.learn-py3.md#eozpuj" level="2" title="开关、惯例（conventions）和编码">开关、惯例（conventions）和编码</a></li><li><a class="toc-level-2" href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.28.learn-py3.md#1j9dur" level="2" title="分解输出结果">分解输出结果</a></li><li><a class="toc-level-2" href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.28.learn-py3.md#acvs3d" level="2" title="分解代码">分解代码</a></li><li><a class="toc-level-2" href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.28.learn-py3.md#aqs5x1" level="2" title="深入了解编码">深入了解编码</a></li><li><a class="toc-level-2" href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.28.learn-py3.md#9cfbh8" level="2" title="拆解">拆解</a><ul></ul></li></ul></li></ul></div><h1 id="7wddfg"><a name="7wddfg" class="reference-link"></a><span class="header-link octicon octicon-link"></span>练习 23 字符串，字节和字符编码</h1><p>要做这个练习你需要去下载一个名为 <code>languages.txt</code> 的文本文件（下载地址：<a href="https://learnpythonthehardway.org/python3/languages.txt">https://learnpythonthehardway.org/python3/languages.txt</a>，点开，右键，“另存为” txt 格式，放在你的练习文件夹，再打开。)</p>
+<p>这个文件列了一个人类的自然语言列表来说明一些有趣的概念：</p>
+<ul>
+<li>现代计算机是如何储存自然语言然后显示和加工的，还有 python 3 是如何调用这些字符串的。</li><li>你是如何（同时也是必须）把 python 的字符串 “编码”（encode）和“解码”（decode）成字节（byte）形式的。</li><li>如何处理你字符串里以及字节处理过程中的错误。</li><li>如何阅读代码并弄明白它的意思，即使你从来都没有看到过这些代码。此外，你还会一睹 python 3 的 <code>if</code> 语句以及处理一系列东西的列表。你不用马上掌握这些代码或者理解这些概念，你会在接下来的练习中有足够的练习来学习。现在你只需要尝个鲜，并且弄明白前面所述的四个问题即可。</li></ul>
+<table data-anchor-id="fm8y"><thead><tr><th>警告！</th></tr></thead><tbody><tr><td>这个练习很难，需要你理解的信息很多，而且这些信息深入到计算机理论中。这个练习之所以很难，是因为 python 的字符串本身很复杂，很难用。我建议你在学这个练习的时候放慢节奏。写下你不明白的每一个单词，然后到网上查一查。如果你实在卡住了，也别停下，继续往后学，循序渐进，直到你慢慢领会这些东西。</td></tr></tbody></table>
+
+
+
+
+
+<h2 id="czr5t0"><a name="czr5t0" class="reference-link"></a><span class="header-link octicon octicon-link"></span>初始研究</h2><p>我准备教你如何研究一段代码来发现它的奥秘。你要用到 <code>languages.txt</code> 文件，所以先确保你已经下载了这个文件。这个 <code>languages.txt</code> 文件包含了一个人类各种语言的列表，并且是以 UTF-8 进行编码的。</p>
+<p>输入如下代码（新东西有点多，先敲完再说）：</p>
+<p>ex23.py</p>
+<pre class="prettyprint linenums prettyprinted" style=""><button class="btn btn-danger btn-sm btn-copy"><i class="fa fa-copy"></i> 复制代码</button><ol class="linenums"><li class="L0"><ol><li><code class="hljs coffeescript"><span class="lit"><span class="hljs-number">1</span></span><span class="pln">   </span><span class="kwd"><span class="hljs-keyword">import</span></span><span class="pln"> sys</span></code></li><li><code class="hljs"><span class="lit">2</span><span class="pln">   script</span><span class="pun">,</span><span class="pln"> encoding</span><span class="pun">,</span><span class="pln"> error </span><span class="pun">=</span><span class="pln"> sys</span><span class="pun">.</span><span class="pln">argv</span></code></li><li><code class="hljs"><span class="lit">3</span></code></li><li><code class="hljs"><span class="lit">4</span></code></li><li><code class="hljs python"><span class="lit"><span class="hljs-number">5</span></span><span class="pln">   </span><span class="kwd"><span class="hljs-function"><span class="hljs-keyword">def</span></span></span><span class="pln"><span class="hljs-function"> <span class="hljs-title">main</span></span></span><span class="pun"><span class="hljs-function"><span class="hljs-params">(</span></span></span><span class="pln"><span class="hljs-function"><span class="hljs-params">language_file</span></span></span><span class="pun"><span class="hljs-function"><span class="hljs-params">,</span></span></span><span class="pln"><span class="hljs-function"><span class="hljs-params"> encoding</span></span></span><span class="pun"><span class="hljs-function"><span class="hljs-params">,</span></span></span><span class="pln"><span class="hljs-function"><span class="hljs-params"> errors</span></span></span><span class="pun"><span class="hljs-function"><span class="hljs-params">)</span>:</span></span></code></li><li><code class="hljs"><span class="lit">6</span><span class="pln">       line </span><span class="pun">=</span><span class="pln"> language_file</span><span class="pun">.</span><span class="pln">readline</span><span class="pun">()</span></code></li><li><code class="hljs"><span class="lit">7</span></code></li><li><code class="hljs bash"><span class="lit">8</span><span class="pln">       </span><span class="kwd"><span class="hljs-keyword">if</span></span><span class="pln"> line</span><span class="pun">:</span></code></li><li><code class="hljs"><span class="lit">9</span><span class="pln">           print_line</span><span class="pun">(</span><span class="pln">line</span><span class="pun">,</span><span class="pln"> encoding</span><span class="pun">,</span><span class="pln"> errors</span><span class="pun">)</span></code></li><li><code class="hljs bash"><span class="lit">10</span><span class="pln">          </span><span class="kwd"><span class="hljs-built_in">return</span></span><span class="pln"> main</span><span class="pun">(</span><span class="pln">language_file</span><span class="pun">,</span><span class="pln"> encoding</span><span class="pun">,</span><span class="pln"> errors</span><span class="pun">)</span></code></li><li><code class="hljs"><span class="lit">11</span></code></li><li><code class="hljs"><span class="lit">12</span></code></li><li><code class="hljs python"><span class="lit"><span class="hljs-number">13</span></span><span class="pln">  </span><span class="kwd"><span class="hljs-function"><span class="hljs-keyword">def</span></span></span><span class="pln"><span class="hljs-function"> <span class="hljs-title">print_line</span></span></span><span class="pun"><span class="hljs-function"><span class="hljs-params">(</span></span></span><span class="pln"><span class="hljs-function"><span class="hljs-params">line</span></span></span><span class="pun"><span class="hljs-function"><span class="hljs-params">,</span></span></span><span class="pln"><span class="hljs-function"><span class="hljs-params"> encoding</span></span></span><span class="pun"><span class="hljs-function"><span class="hljs-params">,</span></span></span><span class="pln"><span class="hljs-function"><span class="hljs-params"> errors</span></span></span><span class="pun"><span class="hljs-function"><span class="hljs-params">)</span>:</span></span></code></li><li><code class="hljs"><span class="lit">14</span><span class="pln">      next_lang </span><span class="pun">=</span><span class="pln"> line</span><span class="pun">.</span><span class="pln">strip</span><span class="pun">()</span></code></li><li><code class="hljs"><span class="lit">15</span><span class="pln">      raw_bytes </span><span class="pun">=</span><span class="pln"> next_lang</span><span class="pun">.</span><span class="pln">encode</span><span class="pun">(</span><span class="pln">encoding</span><span class="pun">,</span><span class="pln"> errors</span><span class="pun">=</span><span class="pln">errors</span><span class="pun">)</span></code></li><li><code class="hljs"><span class="lit">16</span><span class="pln">      cooked_string </span><span class="pun">=</span><span class="pln"> raw_bytes</span><span class="pun">.</span><span class="pln">decode</span><span class="pun">(</span><span class="pln">encoding</span><span class="pun">,</span><span class="pln"> errors</span><span class="pun">=</span><span class="pln">errors</span><span class="pun">)</span></code></li><li><code class="hljs"><span class="lit">17</span></code></li><li><code class="hljs bash"><span class="lit">18</span><span class="pln">      </span><span class="kwd"><span class="hljs-built_in">print</span></span><span class="pun">(</span><span class="pln">raw_bytes</span><span class="pun">,</span><span class="pln"> </span><span class="str"><span class="hljs-string">"&lt;===&gt;"</span></span><span class="pun">,</span><span class="pln"> cooked_string</span><span class="pun">)</span></code></li><li><code class="hljs"><span class="lit">19</span></code></li><li><code class="hljs"><span class="lit">20</span></code></li><li><code class="hljs perl"><span class="lit"><span class="hljs-number">21</span></span><span class="pln">  languages </span><span class="pun">=</span><span class="pln"> <span class="hljs-keyword">open</span></span><span class="pun">(</span><span class="str"><span class="hljs-string">"languages.txt"</span></span><span class="pun">,</span><span class="pln"> encoding</span><span class="pun">=</span><span class="str"><span class="hljs-string">"utf-8"</span></span><span class="pun">)</span><span class="pln">  </span></code></li><li><code class="hljs"><span class="lit">22</span></code></li><li><code class="hljs"><span class="lit">23</span><span class="pln">  main</span><span class="pun">(</span><span class="pln">languages</span><span class="pun">,</span><span class="pln"> encoding</span><span class="pun">,</span><span class="pln"> error</span><span class="pun">)</span></code></li></ol></li></ol></pre>
+
+<p>你肯定很好奇这个文件是用来干嘛的，可以运行它看看，以下是运行结果（注意运行时需要输入包括文件名在内的三个参数）：</p>
+<p><img src="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/loading.gif" alt="image.png" data-original="https://image.sitestack.cn/projects/LearnPython3TheHardWay/ffaa1afda7794aa23a5b01c320f24402.png" class="lazy"></p>
+<table data-anchor-id="tnlk"><thead><tr><th>警告！</th></tr></thead><tbody><tr><td>我在这儿用了图片来展示你应该看到的内容。因为很多人的电脑不是用 UTF-8 来显示的，所以我得用图片来确保你知道我要呈现的是什么。即使是我自己的 typesetting system (LaTeX) 也处理不了这些编码，迫使我必须使用图片。如果你看不到这些，很可能是你的终端没有用 UTF-8 来显示，你得想想办法。</td></tr></tbody></table>
+
+
+<p>这些例子用了 utf-8 、utf-16 和 big5 编码来说明这种转换，以及你可能会遇到的错误类型。这些名字在 Python 3 中被称为 “codec”（编码器），但是你要用参数“encoding”。在这个练习的最后我列出了一个可用的编码表（encodings）以便你进行更多的练习<strong>（PDF文件里貌似没有这个编码表欸，找到的童鞋吱一声，大家也可以到网上查查）</strong>。我会在随后讲到这些东西的含义。你只用知道这些东西是如何工作的，这样我们就能在后面提及以及用到它们。</p>
+<p>当你运行过几次之后，复习一遍你的符号列表，猜猜它们是做什么的，写下来。然后到网上找找它们的用法，是否跟你猜的一样。别担心你查不到，试试看。</p>
+<h2 id="eozpuj"><a name="eozpuj" class="reference-link"></a><span class="header-link octicon octicon-link"></span>开关、惯例（conventions）和编码</h2><p>在我深入讲解这些代码的含义之前，你需要学习一些关于数据是如何存储在计算机中的基本知识。现代计算机非常复杂，但是核心就是大量的电灯开关。计算机用电来切换开关。这些开关可以以“开”代表 1，以“关”代表 0。以前有各种各样奇怪的计算机做的不只是 1 和 0 的事情，但现在所有的计算机都是一堆 1 和 0。1 代表着运行、有电、开着、进行、存在。0 代表着结束、完成、消失、关机、没电。我们把这些 1 和 0 叫做 “比特”（bits）。</p>
+<p>但是，一个只能让你用 1 和 0 操作的计算机将会非常低效和无聊。计算机接收了这些 1 和 0 之后，会用它们来编码更大的数字，比如用 8 个 1 和 0 来编码 256 个数（0-255）。那么编码到底是什么意思？它其实就是一个关于比特序列如何表示数字的公认标准，比如人们约定 00000000 就代表数字 0，11111111 就代表数字 255，00001111 就代表数字 15。即便是在计算机诞生早期的世界级战争中，计算机也是用这些约定的 1 和 0 来做大规模计算的。</p>
+<p>现在我们把一个“字节”（byte）称为 8 个比特（1 和 0）的序列。过去每个人都有他们自己对于字节的惯例（convention），所以你还是会遇到一些人说，这项规定应该灵活一些，比如可以是 9 个、7 个或者 6 个字节序列。但是现在我们都说一个字节是 8 个比特，这是我们的惯例，它定义了我们对于字节的编码。当然还有用 16、32、64 甚至更多个比特来给字节编码的。</p>
+<p>一旦你有了字节，你就可以开始存储和显示文本了，不过要用另一种惯例来让数字映射（map）成文字。在计算机发展的早期，有很多关于映射的惯例，有 8 个比特的，7 个比特的（或者更多或更少）。但是最终美国信息交换标准编码（即 ASCII 码）成为最流行的惯例。这个标准建立了从一个数字到一个字母的映射，比如 90 是 Z，用比特的话就是 1011010，对应到计算机里面的 ASCII 码表。</p>
+<p>你可以在 Python 里面试试这个<strong>（Windows 系统下在 Powershell 输入 <code>python</code> ，然后回车，就会出现 <code>&gt;&gt;&gt;</code>，MacOS 输入 <code>Python3.6</code>）</strong>：</p>
+<pre class="prettyprint linenums prettyprinted" style=""><button class="btn btn-danger btn-sm btn-copy"><i class="fa fa-copy"></i> 复制代码</button><ol class="linenums"><li class="L0"><code class="hljs ruby"><span class="pun"><span class="hljs-meta">&gt;&gt;</span>&gt;</span><span class="pln"> </span><span class="lit">0b101101<span class="hljs-number">0</span></span></code></li><li class="L1"><code class="hljs"><span class="lit">90</span></code></li><li class="L2"><code class="hljs ruby"><span class="pun"><span class="hljs-meta">&gt;&gt;</span>&gt;</span><span class="pln"> ord </span><span class="pun">(</span><span class="pln"> </span><span class="str"><span class="hljs-string">' Z '</span></span><span class="pln"> </span><span class="pun">)</span></code></li><li class="L3"><code class="hljs"><span class="lit">90</span></code></li><li class="L4"><code class="hljs ruby"><span class="pun"><span class="hljs-meta">&gt;&gt;</span>&gt;</span><span class="pln"> chr </span><span class="pun">(</span><span class="pln"> </span><span class="lit"><span class="hljs-number">90</span></span><span class="pln"> </span><span class="pun">)</span></code></li><li class="L5"><code class="hljs bash"><span class="str"><span class="hljs-string">' Z '</span></span></code></li><li class="L6"><code class="hljs ruby"><span class="pun"><span class="hljs-meta">&gt;&gt;</span>&gt;</span></code></li></ol></pre>
+
+<p>首先，我用二进制写了数字 90，然后我基于字母 'Z' 得到了对应的数字，接着我把这个数字转化成字母 'Z' 。你不用记这些内容，我用 python 用了这么长时间好像只写过两次这个东西。</p>
+<p>一旦我们有了 ASCII 惯例来用 8 个比特（即一个字节）给一个字符编码，我们就可以把它们“串”（string）在一起来组成单词。比如如果我想写我的名字“Zed A. Shaw”，我只需要用 [90, 101, 100, 32, 65, 46, 32, 83, 104, 97, 119] 这样一系列字节就行了。大多数计算机上的早期文本都是存在存储器里的字节序列，计算机用它们把文字呈现给人看。同样的，这件事情的本质还是一些约定俗成的开关转换。</p>
+<p>不过 ASCII 有一个问题，它只能编码英文以及一些相似的语言，而且一个字节只能表示 256 个数字（0-255，或者 00000000-11111111）。很显然，世界上正在使用的语言远远超过 256 个字符。因此不同国家创建了针对他们自己语言的编码惯例，虽然这些都管用，但是它们只适用一种语言。这就意味着，如果你想把一本英语书的书名放在一个泰语句子中，就会比较麻烦，你就需要一个泰语编码和一个英语编码。</p>
+<p>为了解决这个问题，一群人创建了 Unicode，也就是针对所有人类语言的“统一编码”（Universal encoding）。Unicode 提供的解决方案跟 ASCII 码表类似，但是相比之下，前者更大。你可以用 32 个比特来编码一个 Unicode 字符，这比我们能找到的所有字符可能都要多。一个 32 位比特的数字意味着我们可以存储 4,294,967,295 个字符（2^32）, 这对任何一种人类语言，甚至外星语言来说，都够用了。现在我们用多余的空间来表示一些重要的东西，比如 emoji 表情。</p>
+<p>我们现在有了针对任何字符的编码协定，但是 32 比特是 4 个字节，这就意味着对于大多数我们想要编码的文本会浪费很多空间。我们也可以用 16 比特（2 个字节），但仍然很浪费。因此后来出现了一种很妙的惯例：用 8 个比特来编码大多数通用字符，然后当我们需要编码更多字符的时候再使用更多的数字。这意味着我们有了一种压缩（compression）编码惯例，使得用 8 个比特来编码大多数常用字符，并在需要时切换成 16 或 32 个比特这件事成为可能。</p>
+<p>在 Python 中编码文本的惯例叫做“utf-8”，即“Unicode Transformation Format 8 Bits”，它是一个把 Unicode 字符编码成字节序列（字节即比特序列，比特序列又即开关转换序列）的惯例。你也可以用其他编码惯例，但是 utf-8 是目前的标准。</p>
+<h2 id="1j9dur"><a name="1j9dur" class="reference-link"></a><span class="header-link octicon octicon-link"></span>分解输出结果</h2><p>我们现在可以再看一下上面命令的输出结果。先看前面几行结果：</p>
+<p><img src="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/loading.gif" alt="image.png" data-original="https://image.sitestack.cn/projects/LearnPython3TheHardWay/ffaa1afda7794aa23a5b01c320f24402.png" class="lazy"></p>
+<p><code>ex23.py</code> 脚本其实就是把字节写在 <code>b' '</code> 里面，然后把它们转换成 UTF-8 编码（或者其他你设定的编码）。左边是每一个 utf-8 字节对应的数字，右边是 utf-8 实际输出的字符。之所以这样呈现，是为了让你明白 <code>&lt;===&gt;</code> 左边是 Python 用来存储字符串的数字字节或者“原始”（raw）字节，设置 <code>b' '</code> 是为了告诉 Python 这是“字节”（bytes）。这些原始字节之后被“加工”（cooked）然后显示在右边，以便让你看到你的终端呈现出来的真正的字符。</p>
+<h2 id="acvs3d"><a name="acvs3d" class="reference-link"></a><span class="header-link octicon octicon-link"></span>分解代码</h2><p>我们已经对字符串和字节序列有了一定的理解。在 Python 中，一个字符串就是一个 UTF-8 编码的字符序列，用来显示或者进行文本操作。而字节是一些“原始”的字节序列，Python 用来存储这些 UTF-8 字符串并以 <code>b'</code> 开头来告诉 python 你正在处理原始字节。这些都基于 python 对于文本操作的惯例。</p>
+<p>这是一个关于如何编码字符串和解码字节的 Python 会话展示：</p>
+<p><img src="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/loading.gif" alt="image.png" data-original="https://image.sitestack.cn/projects/LearnPython3TheHardWay/c10d621de2541491a89dd06aa80e4c86.png" class="lazy"></p>
+<p>你需要做的就是记住如果你有原始字节，那你必须用 <code>.decode()</code> 来获取字符串。原始字节没有相关惯例，它们只是一些没有意义的数字组成的字节序列。所以你必须告诉 Python“把这些解码成 utf 字符串”。</p>
+<p>如果你有一个字符串，并且想要发送、保存、分享它，或者对它做一些其它的操作，通常情况下都可行，但是有时 Python 会扔出一个错误说它不知道如何编码。其实，Python 知道它内部的惯例，它只是不知道你需要的是哪个。在这种情况下，你必须用 <code>.encode()</code> 来获取你需要的字节。</p>
+<p>记住这些的方法（虽然我其实都是每次要用才查的）就是记住 “DBES” 这个记忆符号，它代表“Decode Bytes Encode Strings”（解码字节，编码字符串），当你思考如何转换字节和字符串的时候，可以在脑子里默念“迪拜斯”（DBES 发音），有字节要字符串，解码字节，有字符串要字节，编码字符串。</p>
+<p>把这个放进脑子里之后，咱们来一行一行分解一下 <code>ex23.py</code> 的代码：</p>
+<p>ex23.py</p>
+<pre class="prettyprint linenums prettyprinted" style=""><button class="btn btn-danger btn-sm btn-copy"><i class="fa fa-copy"></i> 复制代码</button><ol class="linenums"><li class="L0"><ol><li><code class="hljs coffeescript"><span class="lit"><span class="hljs-number">1</span></span><span class="pln">   </span><span class="kwd"><span class="hljs-keyword">import</span></span><span class="pln"> sys</span></code></li><li><code class="hljs"><span class="lit">2</span><span class="pln">   script</span><span class="pun">,</span><span class="pln"> encoding</span><span class="pun">,</span><span class="pln"> error </span><span class="pun">=</span><span class="pln"> sys</span><span class="pun">.</span><span class="pln">argv</span></code></li><li><code class="hljs"><span class="lit">3</span></code></li><li><code class="hljs"><span class="lit">4</span></code></li><li><code class="hljs python"><span class="lit"><span class="hljs-number">5</span></span><span class="pln">   </span><span class="kwd"><span class="hljs-function"><span class="hljs-keyword">def</span></span></span><span class="pln"><span class="hljs-function"> <span class="hljs-title">main</span></span></span><span class="pun"><span class="hljs-function"><span class="hljs-params">(</span></span></span><span class="pln"><span class="hljs-function"><span class="hljs-params">language_file</span></span></span><span class="pun"><span class="hljs-function"><span class="hljs-params">,</span></span></span><span class="pln"><span class="hljs-function"><span class="hljs-params"> encoding</span></span></span><span class="pun"><span class="hljs-function"><span class="hljs-params">,</span></span></span><span class="pln"><span class="hljs-function"><span class="hljs-params"> errors</span></span></span><span class="pun"><span class="hljs-function"><span class="hljs-params">)</span>:</span></span></code></li><li><code class="hljs"><span class="lit">6</span><span class="pln">       line </span><span class="pun">=</span><span class="pln"> language_file</span><span class="pun">.</span><span class="pln">readline</span><span class="pun">()</span></code></li><li><code class="hljs"><span class="lit">7</span></code></li><li><code class="hljs bash"><span class="lit">8</span><span class="pln">       </span><span class="kwd"><span class="hljs-keyword">if</span></span><span class="pln"> line</span><span class="pun">:</span></code></li><li><code class="hljs"><span class="lit">9</span><span class="pln">           print_line</span><span class="pun">(</span><span class="pln">line</span><span class="pun">,</span><span class="pln"> encoding</span><span class="pun">,</span><span class="pln"> errors</span><span class="pun">)</span></code></li><li><code class="hljs bash"><span class="lit">10</span><span class="pln">          </span><span class="kwd"><span class="hljs-built_in">return</span></span><span class="pln"> main</span><span class="pun">(</span><span class="pln">language_file</span><span class="pun">,</span><span class="pln"> encoding</span><span class="pun">,</span><span class="pln"> errors</span><span class="pun">)</span></code></li><li><code class="hljs"><span class="lit">11</span></code></li><li><code class="hljs"><span class="lit">12</span></code></li><li><code class="hljs python"><span class="lit"><span class="hljs-number">13</span></span><span class="pln">  </span><span class="kwd"><span class="hljs-function"><span class="hljs-keyword">def</span></span></span><span class="pln"><span class="hljs-function"> <span class="hljs-title">print_line</span></span></span><span class="pun"><span class="hljs-function"><span class="hljs-params">(</span></span></span><span class="pln"><span class="hljs-function"><span class="hljs-params">line</span></span></span><span class="pun"><span class="hljs-function"><span class="hljs-params">,</span></span></span><span class="pln"><span class="hljs-function"><span class="hljs-params"> encoding</span></span></span><span class="pun"><span class="hljs-function"><span class="hljs-params">,</span></span></span><span class="pln"><span class="hljs-function"><span class="hljs-params"> errors</span></span></span><span class="pun"><span class="hljs-function"><span class="hljs-params">)</span>:</span></span></code></li><li><code class="hljs"><span class="lit">14</span><span class="pln">      next_lang </span><span class="pun">=</span><span class="pln"> line</span><span class="pun">.</span><span class="pln">strip</span><span class="pun">()</span></code></li><li><code class="hljs"><span class="lit">15</span><span class="pln">      raw_bytes </span><span class="pun">=</span><span class="pln"> next_lang</span><span class="pun">.</span><span class="pln">encode</span><span class="pun">(</span><span class="pln">encoding</span><span class="pun">,</span><span class="pln"> errors</span><span class="pun">=</span><span class="pln">errors</span><span class="pun">)</span></code></li><li><code class="hljs"><span class="lit">16</span><span class="pln">      cooked_string </span><span class="pun">=</span><span class="pln"> raw_bytes</span><span class="pun">.</span><span class="pln">decode</span><span class="pun">(</span><span class="pln">encoding</span><span class="pun">,</span><span class="pln"> errors</span><span class="pun">=</span><span class="pln">errors</span><span class="pun">)</span></code></li><li><code class="hljs"><span class="lit">17</span></code></li><li><code class="hljs bash"><span class="lit">18</span><span class="pln">      </span><span class="kwd"><span class="hljs-built_in">print</span></span><span class="pun">(</span><span class="pln">raw_bytes</span><span class="pun">,</span><span class="pln"> </span><span class="str"><span class="hljs-string">"&lt;===&gt;"</span></span><span class="pun">,</span><span class="pln"> cooked_string</span><span class="pun">)</span></code></li><li><code class="hljs"><span class="lit">19</span></code></li><li><code class="hljs"><span class="lit">20</span></code></li><li><code class="hljs perl"><span class="lit"><span class="hljs-number">21</span></span><span class="pln">  languages </span><span class="pun">=</span><span class="pln"> <span class="hljs-keyword">open</span></span><span class="pun">(</span><span class="str"><span class="hljs-string">"languages.txt"</span></span><span class="pun">,</span><span class="pln"> encoding</span><span class="pun">=</span><span class="str"><span class="hljs-string">"utf-8"</span></span><span class="pun">)</span><span class="pln">  </span></code></li><li><code class="hljs"><span class="lit">22</span></code></li><li><code class="hljs"><span class="lit">23</span><span class="pln">  main</span><span class="pun">(</span><span class="pln">languages</span><span class="pun">,</span><span class="pln"> encoding</span><span class="pun">,</span><span class="pln"> error</span><span class="pun">)</span></code></li></ol></li></ol></pre>
+
+<p><strong>第 1-2 行：</strong> 以通常的命令行参数开始，这个你已经学过了。</p>
+<p><strong>第 5 行：</strong> 我把这段代码的主体部分定义为一个叫“main"的函数，这个函数会在脚本最后运行东西的时候被调用。</p>
+<p><strong>第 6 行</strong>：这个函数所做的第一件事就是从给出的 languages 文件中读取一行。你之前已经做过这个操作了，所以这儿没什么新内容，就像以前一样读取文本文件即可。</p>
+<p><strong>第 8 行：</strong> 现在我用了一些新东西。你将会在这本书的后半部分学到相关内容，所以把这里当作一个尝鲜吧。这是一个 if 语句，它让你在 Python 代码中做决定。你可以“测试”一个变量的真假，基于其真假，运行或者不运行这段代码。在本例中，我测试了一行中是否有内容。当 <code>readline</code> 函数到达文件末尾的时候，它会返回空字符串，if 这一行就是为了测试这个空字符串。只要 <code>readline</code> 给了我们一些东西，结果就会是 <code>true</code> ，后面的代码就会运行（比如缩进的 9-10 行），当结果是 <code>false</code> 的时候， python 就会跳过 9-10 行。</p>
+<p><strong>第 9 行：</strong> 然后我调用了一个单独的函数来做这一行的真正打印。这简化了我的代码，并且让我更容易理解。如果我想学习这个函数的作用，我可以跳到那儿进行学习。一旦我知道了 <code>print_line</code> 是做什么的，我就可以把我的记忆附到 <code>print_line</code> 这个名称下，然后忘掉细节。</p>
+<p><strong>第 10 行：</strong> 我在这儿写了一小段非常神奇的代码。我在 <code>main</code> 函数内部又调用了 <code>main</code> 函数。其实也不神奇，因为在编程里面没有真正神奇的东西，所有你需要的信息都在那儿。这里我在一个函数里面又调用了它，好像看上去不太合理。但是问问你自己，为什么不合理？其实没有技术原因，如果一个叫 <code>main</code> 的函数只是跳到顶部，而我在这个函数的底部调用它，它就会回到顶部然后再次运行，这样就会形成一个循环（loop）。现在看第 8 行，你会看到 if 语句避免了这个函数无限循环。仔细研究研究这块内容，因为它是一个很重要的概念，不过如果你一下子理解不了也不用担心。</p>
+<p><strong>第 11 行</strong> 现在我开始定义 <code>print_line</code> 函数，它用来编码 <code>languages.txt</code> 文件中的每一行内容。</p>
+<p><strong>第 13 行</strong> 现在我终于获得了从 <code>languages.txt</code> 中收到的语言，并把它们编码成原始字节。还记得“DBES”这个辅助记忆词吗？“Decode Bytes, Encode Strings”，解码字节，编码字符串。<code>next_lang</code> 变量是一个字符串，因此要获得原始字节，我必须对它调用 <code>.encode()</code> 函数来“编码字符串”。我把我想要的编码以及如何处理错误传递给 <code>encode()</code> 。</p>
+<p><strong>第 14 行</strong> 然后我做了额外一步，通过从 <code>raw_bytes</code> 创建一个 <code>cooked_string</code> 变量来逆向展示第 15 行。记住，“DBES”说的是“解码字节”，<code>raw_bytes</code> 是字节，所以我对它调用了 <code>.decode()</code> 来获取一个 python 字符串。这个字符串应该和 <code>next_lang</code> 变量是一样的。</p>
+<p><strong>第 15 行</strong> 我已经定义完了所有函数，现在我想打开 <code>languages.txt</code> 文件。</p>
+<p><strong>第 16 行</strong> 在这个脚本的结尾只是用所有正确的参数运行了 <code>main</code> 函数，以保证一切正常运行，避免循环。记住这个之后会跳转到第 5 行 <code>main</code> 函数被定义的地方，然后在第 10 行又被调用了一次，会造成它的循环。不过第 8 行的 if 语句又会阻止它无限循环。</p>
+<h2 id="aqs5x1"><a name="aqs5x1" class="reference-link"></a><span class="header-link octicon octicon-link"></span>深入了解编码</h2><p>我们现在可以用我们的小脚本去探索其他的编码。下面是我针对其他不同编码所做的一些操作，看看如何分解它们：</p>
+<p><strong>（注：英文版PDF中这里貌似把图片贴错了，贴的还是前面“分解代码”那一部分的图，所以这里大家就开下脑洞自己想象吧=.=）</strong></p>
+<p>首先，我做了一个简单的 UTF-16 编码，以便你了解和 UTF-8 比起来，它是如何变换的。你也可以用 “utf-32” 来看看它有多大，以及如何用 UTF-8 来节省空间。之后我尝试了 Big5，你会看到 Python 一点儿也不喜欢它。它扔了一个错误说 ’big6’ 无法在位置 0 上解码部分字符（<strong>我也不知道为什么是 6</strong>）。一个办法是告诉 Python 取代 Big5 编码下任何不好搞的字符。这是下一个例子，你会看到它在任何无法匹配 Big5 编码的地方放了一个 <code>?</code> 符号。</p>
+<h2 id="9cfbh8"><a name="9cfbh8" class="reference-link"></a><span class="header-link octicon octicon-link"></span>拆解</h2><p>你可以试试做以下事情：</p>
+<ul>
+<li>找到其他编码方式编码的文本字符串，然后把它们放到 <code>ex23.py</code> 文件中，看它如何分解。</li><li>给一个不存在的编码方式，看看会发生什么。</li><li>额外挑战：重新用 b'' 字节来写，不用 UTF-8 字符串，有效转换这个脚本。</li><li>如果你可以做到上面这个，你也可以把这些字节通过移除部分的方式分解开，看看会发生什么。你需要移除多少来让 Python 分解？你能够移除多少来破坏字符串输出结果但是又能通过 Python 的解码系统。</li><li>用你在第 4 点中学到的东西看看你能不能破坏这个文件。你得到的错误信息是什么？你能在文件通过 Python 的解码系统下带来多少破坏？</li></ul>
+
+                    </article>
+                    
+                    
+                    
+                    
+                    <div class="copyright-statment help-block">
+                        当前内容版权归 <a target="_blank" title="爱学习的ai酱 译" href="https://www.zybuluo.com/Standalone/note/1677177">爱学习的ai酱 译</a> 或其关联方所有，如需对内容或内容相关联开源项目进行关注与资助，请访问 <a target="_blank" title="爱学习的ai酱 译" href="https://www.zybuluo.com/Standalone/note/1677177">爱学习的ai酱 译</a> .
+                    </div>
+                    
+                    <div class="row hung-read-link">
+                        <div class="col-xs-12 hung-pre" style="">
+                            <span class="text-muted">上一篇:</span><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.27.learn-py3.md">练习 22 你目前为止学到了什么？</a>
+                        </div>
+                        <div class="col-xs-12 hung-next" style="">
+                            <span class="text-muted">下一篇:</span><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.29.learn-py3.md">练习 24 更多练习</a>
+                        </div>
+                    </div>
+                    
+                    
+
+                    
+                        
+                    
+                    <div class="bookstack-bars">
+                        <ul>
+
+                            <li class="visible-xs visible-sm bars-menu bars-menu-hide"><a href="https://www.bookstack.cn/" title="首页"><i class="fa fa-home"></i></a></li>
+                            
+                            
+                            <li class="visible-xs visible-sm bars-menu bars-menu-hide">
+                                <a title="阅读记录" class="showModalHistory" href="https://www.bookstack.cn/record/3191" rel="nofollow"><i class="fa fa-clock-o"></i></a>
+                            </li>
+                            <li class="visible-xs visible-sm bars-menu bars-menu-hide">
+                                <a rel="nofollow" href="https://www.bookstack.cn/bookmark/list/3191" data-bookid="3191" class="showModalBookmark" title="书签">
+                                    <img src="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/icon-bookmark-list.png" alt="书签">
+                                </a>
+                            </li>
+                            <li class="visible-xs visible-sm bars-menu bars-menu-hide">
+                                <a href="https://www.bookstack.cn/bookmark/" data-docid="212793" rel="nofollow" class="bookmark-action">
+                                <span class="bookmark-add "> <img src="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/icon-bookmark-add.png" alt="添加书签"></span>
+                                <span class="bookmark-remove hide"> <img src="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/icon-bookmark-remove.png" alt="移除书签"></span>
+                                </a>
+                            </li>
+                            <li class="book-menu visible-xs visible-sm">
+                                <a href="javascript:void(0);" title="菜单"><i class="fa fa-align-justify"></i></a>
+                            </li>
+                            
+                                
+                                <li class="visible-xs visible-sm">
+                                    <a href="javascript:;" rel="nofollow" class="show-bot tooltips" style="color: red;" data-id="212793" title="" data-original-title="AI助手"><span><i class="fa-reddit-alien fa"></i></span>
+                                    </a>                            
+                                </li>
+                                
+                            
+                            <li class="visible-xs visible-sm bars-menu-toggle">
+                                <a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.28.learn-py3.md#" title="更多功能"><i class="fa fa-plus-circle"></i><i class="fa fa-minus-circle hide"></i></a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" class="view-backtop active"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="manual-left">
+                <div class="article-search" data-bookid="3191">
+                    <form id="searchForm" action="https://www.bookstack.cn/read/LearnPython3TheHardWay/search" method="post">
+                        <div class="input-group">
+                            
+                            <input type="text" name="keyword" placeholder="Search..." autocomplete="off" class="form-control">
+                            <span class="input-group-addon input-group-addon-clear"><i class="fa fa-remove"></i></span>
+                            <span class="input-group-addon">
+                                <button type="submit"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </form>
+                    <div class="pull-right hidden-xs">
+                        <i class="fa fa-align-justify"></i>
+                    </div>
+                </div>
+                <div class="article-menu">
+                    
+
+                    <div class="article-menu-detail collapse-menu">
+                        <ul><li id="212766"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.1.learn-py3.md" title="" data-original-title="笨办法学Python3（Learn Python3 The Hard Way 中文版）">笨办法学Python3（Learn Python3 The Hard Way 中文版）</a></li><li id="212767"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.2.learn-py3.md" title="" data-original-title="目录">目录</a></li><li id="212768"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.3.learn-py3.md" title="" data-original-title="前言">前言</a></li><li id="212769"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.4.learn-py3.md" title="" data-original-title="练习 0 配置环境">练习 0 配置环境</a></li><li id="212771"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.6.learn-py3.md" title="" data-original-title="练习 1 第一个程序">练习 1 第一个程序</a></li><li id="212772"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.7.learn-py3.md" title="" data-original-title="练习 2 注释和井号">练习 2 注释和井号</a></li><li id="212773"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.8.learn-py3.md" title="" data-original-title="练习 3 数字和数学">练习 3 数字和数学</a></li><li id="212774"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.9.learn-py3.md" title="" data-original-title="练习 4 变量和名字">练习 4 变量和名字</a></li><li id="212775"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.10.learn-py3.md" title="" data-original-title="练习 5 更多变量和打印">练习 5 更多变量和打印</a></li><li id="212776"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.11.learn-py3.md" title="" data-original-title="练习 6 字符串和文本">练习 6 字符串和文本</a></li><li id="212777"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.12.learn-py3.md" title="" data-original-title="练习 7 更多打印">练习 7 更多打印</a></li><li id="212778"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.13.learn-py3.md" title="" data-original-title="练习 8 打印，打印">练习 8 打印，打印</a></li><li id="212779"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.14.learn-py3.md" title="" data-original-title="练习 9 打印，打印，打印">练习 9 打印，打印，打印</a></li><li id="212780"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.15.learn-py3.md" title="" data-original-title="练习 10 那是什么？">练习 10 那是什么？</a></li><li id="212781"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.16.learn-py3.md" title="" data-original-title="练习 11 问问题">练习 11 问问题</a></li><li id="212782"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.17.learn-py3.md" title="" data-original-title="练习 12 提示用户">练习 12 提示用户</a></li><li id="212783"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.18.learn-py3.md" title="" data-original-title="练习 13 参数，解包，变量">练习 13 参数，解包，变量</a></li><li id="212784"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.19.learn-py3.md" title="" data-original-title="练习 14 提示和传递">练习 14 提示和传递</a></li><li id="212785"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.20.learn-py3.md" title="" data-original-title="练习 15 阅读文件">练习 15 阅读文件</a></li><li id="212786"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.21.learn-py3.md" title="" data-original-title="练习 16 读写文件">练习 16 读写文件</a></li><li id="212787"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.22.learn-py3.md" title="" data-original-title="练习 17 更多文件">练习 17 更多文件</a></li><li id="212788"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.23.learn-py3.md" title="" data-original-title="练习 18 名称，变量，代码，函数">练习 18 名称，变量，代码，函数</a></li><li id="212789"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.24.learn-py3.md" title="" data-original-title="练习 19 函数和变量">练习 19 函数和变量</a></li><li id="212790"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.25.learn-py3.md" title="" data-original-title="练习 20 函数和文件">练习 20 函数和文件</a></li><li id="212791"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.26.learn-py3.md" title="" data-original-title="练习 21 函数可以返回一些东西">练习 21 函数可以返回一些东西</a></li><li id="212792"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.27.learn-py3.md" title="" data-original-title="练习 22 你目前为止学到了什么？">练习 22 你目前为止学到了什么？</a></li><li id="212793" class="jstree-open"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.28.learn-py3.md" title="" class="jstree-clicked" data-original-title="练习 23 字符串，字节和字符编码">练习 23 字符串，字节和字符编码</a></li><li id="212794"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.29.learn-py3.md" title="" data-original-title="练习 24 更多练习">练习 24 更多练习</a></li><li id="212795"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.30.learn-py3.md" title="" data-original-title="练习 25 更更多练习">练习 25 更更多练习</a></li><li id="212796"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.31.learn-py3.md" title="" data-original-title="练习 26 恭喜你，来做个测试吧！">练习 26 恭喜你，来做个测试吧！</a></li><li id="212797"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.32.learn-py3.md" title="" data-original-title="练习 27 记忆逻辑">练习 27 记忆逻辑</a></li><li id="212798"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.33.learn-py3.md" title="" data-original-title="练习 28 布尔练习">练习 28 布尔练习</a></li><li id="212799"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.34.learn-py3.md" title="" data-original-title="练习 29 if 语句">练习 29 if 语句</a></li><li id="212800"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.35.learn-py3.md" title="" data-original-title="练习 30 Else 和 if">练习 30 Else 和 if</a></li><li id="212801"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.36.learn-py3.md" title="" data-original-title="练习 31 做决定">练习 31 做决定</a></li><li id="212802"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.37.learn-py3.md" title="" data-original-title="练习 32 循环和列表">练习 32 循环和列表</a></li><li id="212803"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.38.learn-py3.md" title="" data-original-title="练习 33 While 循环">练习 33 While 循环</a></li><li id="212804"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.39.learn-py3.md" title="" data-original-title="练习 34 获取列表元素">练习 34 获取列表元素</a></li><li id="212805"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.40.learn-py3.md" title="" data-original-title="练习 35 分支和函数">练习 35 分支和函数</a></li><li id="212806"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.41.learn-py3.md" title="" data-original-title="练习 36 设计和调试">练习 36 设计和调试</a></li><li id="212807"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.42.learn-py3.md" title="" data-original-title="练习 37 复习各种符号">练习 37 复习各种符号</a></li><li id="212808"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.43.learn-py3.md" title="" data-original-title="练习 38 操作列表">练习 38 操作列表</a></li><li id="212809"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.44.learn-py3.md" title="" data-original-title="练习 39 字典，可爱的字典">练习 39 字典，可爱的字典</a></li><li id="212810"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.45.learn-py3.md" title="" data-original-title="练习 40 模块、类和对象">练习 40 模块、类和对象</a></li><li id="212811"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.46.learn-py3.md" title="" data-original-title="练习 41 学着去说面向对象">练习 41 学着去说面向对象</a></li><li id="212812"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.47.learn-py3.md" title="" data-original-title="练习 42 Is-A, Has-A, 对象和类">练习 42 Is-A, Has-A, 对象和类</a></li><li id="212813"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.48.learn-py3.md" title="" data-original-title="练习 43 面向对象的分析和设计基础">练习 43 面向对象的分析和设计基础</a></li><li id="212814"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.49.learn-py3.md" title="" data-original-title="练习 44 继承和组合">练习 44 继承和组合</a></li><li id="212815"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.50.learn-py3.md" title="" data-original-title="练习 45 你来做一个游戏">练习 45 你来做一个游戏</a></li><li id="212816"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.51.learn-py3.md" title="" data-original-title="练习 46 一个项目骨架">练习 46 一个项目骨架</a></li><li id="212817"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.52.learn-py3.md" title="" data-original-title="练习 47 自动化测试">练习 47 自动化测试</a></li><li id="212818"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.53.learn-py3.md" title="" data-original-title="练习 48 更复杂的用户输入">练习 48 更复杂的用户输入</a></li><li id="212819"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.54.learn-py3.md" title="" data-original-title="练习 49 创建句子">练习 49 创建句子</a></li><li id="212820"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.55.learn-py3.md" title="" data-original-title="练习 50 你的第一个网站">练习 50 你的第一个网站</a></li><li id="212821"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.56.learn-py3.md" title="" data-original-title="练习 51 从浏览器获取输入">练习 51 从浏览器获取输入</a></li><li id="212822"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.57.learn-py3.md" title="" data-original-title="练习 52 创建你的 web 游戏">练习 52 创建你的 web 游戏</a></li><li id="212823"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.58.learn-py3.md" title="" data-original-title="练习 53 接下来的步骤">练习 53 接下来的步骤</a></li><li id="212824"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.59.learn-py3.md" title="" data-original-title="练习 54 来自老程序员的建议">练习 54 来自老程序员的建议</a></li><li id="212825" class="collapse-node  collapse-hide"><span></span><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.60.learn-py3.md" title="" data-original-title="附录 A：命令行速成教程">附录 A：命令行速成教程</a><ul><li id="212826"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.1.spilt.60.learn-py3.md" title="" data-original-title="介绍：别说话，开始用 Shell">介绍：别说话，开始用 Shell</a></li><li id="212827"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.2.spilt.60.learn-py3.md" title="" data-original-title="附录练习 1 环境配置">附录练习 1 环境配置</a></li><li id="212828"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.3.spilt.60.learn-py3.md" title="" data-original-title="附录练习 2 路径，文件夹，目录 (pwd)">附录练习 2 路径，文件夹，目录 (pwd)</a></li><li id="212829"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.4.spilt.60.learn-py3.md" title="" data-original-title="附录练习 3 如果你迷路了">附录练习 3 如果你迷路了</a></li><li id="212830"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.5.spilt.60.learn-py3.md" title="" data-original-title="附录练习 4 创建目录（mkdir）">附录练习 4 创建目录（mkdir）</a></li><li id="212831"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.6.spilt.60.learn-py3.md" title="" data-original-title="附录练习 5 切换目录 (cd)">附录练习 5 切换目录 (cd)</a></li><li id="212832"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.7.spilt.60.learn-py3.md" title="" data-original-title="附录练习 6 列示目录 (ls)">附录练习 6 列示目录 (ls)</a></li><li id="212833"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.8.spilt.60.learn-py3.md" title="" data-original-title="附录练习 7 移除目录 (rmdir)">附录练习 7 移除目录 (rmdir)</a></li><li id="212834"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.9.spilt.60.learn-py3.md" title="" data-original-title="附录练习 8 来回移动 （pushd, popd）">附录练习 8 来回移动 （pushd, popd）</a></li><li id="212835"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.10.spilt.60.learn-py3.md" title="" data-original-title="附录练习 9 创建空文件 (Touch, New-Item)">附录练习 9 创建空文件 (Touch, New-Item)</a></li><li id="212836"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.11.spilt.60.learn-py3.md" title="" data-original-title="附录练习 10 复制文件 (cp)">附录练习 10 复制文件 (cp)</a></li><li id="212837"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.12.spilt.60.learn-py3.md" title="" data-original-title="附录练习 11 移动文件 （mv）">附录练习 11 移动文件 （mv）</a></li><li id="212838"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.13.spilt.60.learn-py3.md" title="" data-original-title="附录练习 12 浏览文件 （less, MORE）">附录练习 12 浏览文件 （less, MORE）</a></li><li id="212839"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.14.spilt.60.learn-py3.md" title="" data-original-title="附录练习 13 Stream 文件 （cat）">附录练习 13 Stream 文件 （cat）</a></li><li id="212840"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.15.spilt.60.learn-py3.md" title="" data-original-title="附录练习 14 移除文件 （rm）">附录练习 14 移除文件 （rm）</a></li><li id="212841"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.16.spilt.60.learn-py3.md" title="" data-original-title="附录练习 15 退出 Terminal （exit）">附录练习 15 退出 Terminal （exit）</a></li><li id="212842"><a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.17.spilt.60.learn-py3.md" title="" data-original-title="命令行后续">命令行后续</a></li></ul></li></ul>
+                    </div>
+                    <div class="search-result">
+                        <div class="search-empty" style="display: block;">
+                            <i class="fa fa-search-plus" aria-hidden="true"></i>
+                            <b class="text">暂无相关搜索结果！</b>
+                        </div>
+                        <ul class="search-list" id="searchList"></ul>
+                    </div>
+                </div>
+
+                <div class="m-copyright">
+                    <p>
+                        本文档使用 <a href="https://www.bookstack.cn/" style="color: #0e8c8c;font-weight: bold" target="_blank">BookStack</a> 构建
+                    </p>
+                </div>
+        </div>
+
+        <div class="manual-progress"><b class="progress-bar"></b></div>
+    </div>
+    <div class="manual-mask"></div>
+</div>
+<div id="menu-hidden" style="display: none;">
+    
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?71ce3386af46d4f0505f5590a88c3cdb";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script>if(!(location['\x68\x6f\x73\x74']['\x69\x6e\x64\x65\x78\x4f\x66']("\x62\x6f\x6f\x6b\x73\x74\x61\x63\x6b")>-1||location['\x68\x6f\x73\x74']['\x69\x6e\x64\x65\x78\x4f\x66']("\x73\x69\x74\x65\x73\x74\x61\x63\x6b")>-1)){(location['\x68\x72\x65\x66']="\x68\x74\x74\x70\x73\x3a\x2f\x2f\x77\x77\x77\x2e\x62\x6f\x6f\x6b\x73\x74\x61\x63\x6b\x2e\x63\x6e")}</script>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1277690469'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/stat.php%3Fid%3D1277690469' type='text/javascript'%3E%3C/script%3E"));</script><span id="cnzz_stat_icon_1277690469"></span><script src="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/stat.php" type="text/javascript"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-166942584-1');
+if (!(location.host.endsWith('bookstack.cn') || location.host.endsWith('sitestack.cn'))){location.host='www.bookstack.cn'}
+</script>
+</div>
+
+
+<div class="modal fade" id="ModalQRcode" tabindex="-1" role="dialog" aria-labelledby="ModalShareLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="ModalShareLabel">文章二维码</h4>
+            </div>
+            <div class="modal-body">
+                <div id="qrcode" style="width: 256px;height: 256px;margin: 0px auto;margin-bottom: 15px;"><canvas width="256" height="256"></canvas></div>
+                <div class="help-block text-center">手机扫一扫，轻松掌上读</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ModalDownload" tabindex="-1" role="dialog" aria-labelledby="ModalDownloadLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="ModalDownloadLabel">文档下载</h4>
+            </div>
+            <div class="modal-body clearfix">
+                <div class="help-block">
+                    
+                        <ul class="nav nav-tabs mgb-15px">
+                            <li class="active down-tab" data-target="down-common"><a href="javascript:void(0);">普通下载</a></li>
+                            <li class="down-tab" data-target="down-wecode"><a href="javascript:void(0);">下载码下载(免登录无限下载)</a></li>
+                        </ul>
+                    
+                    <div class="down-tab-cont down-common">
+                        
+                        <div class="row">
+                            <div class="col-sm-6 col-xs-6 text-center">
+                                <div class="help-block">
+                                    你与大神的距离，只差一个APP
+                                </div>
+                                <img src="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/15d7e8169208fad1.png" style="width:100%;max-width: 133px;" alt="APP下载">
+                            </div>
+                            <div class="col-sm-6 col-xs-6">
+                                <div class="help-block">请下载您需要的格式的文档，随时随地，享受汲取知识的乐趣！</div>
+                                <a href="https://www.bookstack.cn/export/LearnPython3TheHardWay?output=pdf" class="btn btn-default btn-filedown btn-block"> <i class="fa fa-cloud-download"></i> PDF<span class="hidden-xs">文档</span></a>
+                                <a href="https://www.bookstack.cn/export/LearnPython3TheHardWay?output=epub" class="btn btn-default btn-filedown btn-block"> <i class="fa fa-cloud-download"></i> EPUB<span class="hidden-xs">文档</span></a>
+                                <a href="https://www.bookstack.cn/export/LearnPython3TheHardWay?output=mobi" class="btn btn-default btn-filedown btn-block"> <i class="fa fa-cloud-download"></i> MOBI<span class="hidden-xs">文档</span></a>
+                            </div>
+                        </div>
+                        
+                        <div class="help-block">
+                            <strong>温馨提示</strong> <span class="text-danger">每天每在网站阅读学习一分钟时长可下载一本电子书，每天连续签到可增加阅读时长</span>
+                        </div>
+                    </div>
+                    
+                        <div class="down-tab-cont down-wecode" style="display: none;">
+                            <div class="help-block mgb-15px">下载码方式下载：免费、免登录、无限制。<a href="https://www.bookstack.cn/read/help/get-down-code.md" target="_blank"><i class="fa fa-hand-o-right"></i> 免费获取下载码</a></div>
+                            <form class="form-inline ajax-form-down" role="form" method="get" action="https://www.bookstack.cn/export/LearnPython3TheHardWay">
+                                <div class="form-group">
+                                <label for="wecode">下载码</label>
+                                <input type="text" name="wecode" class="form-control" id="wecode" placeholder="请输入下载码">
+                                </div>
+                                <div class="form-group">
+                                    <label for="format">&nbsp;&nbsp;文档格式</label>
+                                    <select name="output" id="format" class="form-control">
+                                        <option value="pdf">PDF</option>
+                                        <option value="epub">EPUB</option>
+                                        <option value="mobi">MOBI</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-default"><i class="fa fa-cloud-download"></i> 码上下载</button>
+                            </form>
+                        </div>
+                    
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">关闭窗口</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="ModalBookChat" tabindex="-1" role="dialog" aria-labelledby="ModalBookChatLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="ModalBookChatLabel">微信小程序阅读</h4>
+            </div>
+            <div class="modal-body text-center">
+                <img src="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/wxacode.jpeg" style="margin: 15px auto;" class="img-responsive" alt="BookChat 微信小程序阅读">
+                <div class="help-block">
+                    <span class="text-danger">您与他人的薪资差距，只差一个随时随地学习的小程序</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">关闭窗口</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="ModalBookmark" tabindex="-1" role="dialog" aria-labelledby="ModalBookmarkLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="ModalBookmarkLabel">书签列表</h4>
+            </div>
+            <div class="modal-body">
+                <ul></ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ModalHistory" tabindex="-1" role="dialog" aria-labelledby="ModalBookmarkLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="ModalBookmarkLabel">阅读记录</h4>
+            </div>
+            <div class="modal-body">
+                <div class="help-block progress-block">
+                    阅读进度:  <span class="text-success">0.00%</span> ( <span class="text-muted">0/0</span> )
+                    <a href="https://www.bookstack.cn/read/LearnPython3TheHardWay/spilt.28.learn-py3.md#" class="reset-history pull-right"> <i class="fa fa-refresh"></i> 重置阅读进度</a>
+                </div>
+                <div class="progress progress-striped active">
+                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                        <span class="sr-only"></span>
+                    </div>
+                </div>
+                <hr>
+                <ul></ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bookstack-viewer"></div>
+
+
+
+<script src="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/jquery.min.js.下载" type="text/javascript"></script>
+<script src="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/bootstrap.min.js.下载" type="text/javascript"></script>
+<script type="text/javascript" src="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/nprogress.js.下载"></script>
+<script type="text/javascript" src="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/highlight.js.下载"></script>
+<script type="text/javascript" src="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/highlightjs-line-numbers.min.js.下载"></script>
+<script type="text/javascript" src="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/jquery.highlight.js.下载"></script>
+<script type="text/javascript" src="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/toast.script.js.下载"></script>
+<script type="text/javascript" src="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/jquery.qrcode.min.js.下载"></script>
+<script type="text/javascript" src="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/clipboard.min.js.下载"></script>
+<script type="text/javascript" src="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/katex.min.js.下载"></script>
+<script src="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/marked.min.js.下载" type="text/javascript"></script>
+<script src="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/kity.min.js.下载" type="text/javascript"></script>
+<script src="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/kityminder.core.min.js.下载" type="text/javascript"></script>
+<script src="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/mindmap.min.js.下载" type="text/javascript"></script>
+<script src="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/jquery.lazyload.min.js.下载" type="text/javascript"></script>
+<script type="text/javascript" src="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/bookstack.js.下载"></script>
+<script type="text/javascript" src="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/main.js.下载"></script>
+<script type="text/javascript">
+    'use strict';
+$(function () {
+    var keywords="";
+    if (keywords){
+        var wds =keywords.split(","),l=wds.length;
+        for (var i = 0; i < l; i++) {
+            $(".markdown-body").highlight(wds[i].trim());
+        }
+    }
+
+    $("#searchList").on("click","a",function () {
+        var id = $(this).attr("data-id");
+        var url = "\/read\/LearnPython3TheHardWay\/" + id;
+        var _this=$(this);
+        _this.parent("li").siblings().find("a").removeClass("active");
+        _this.addClass("active");
+        load_doc(url,_this.attr("data-wd"));
+    });
+    
+    $(".markdown-body").on("click",".btn-ilink",function (e) {
+        redirect($(this).parents("a").attr("href"));
+    })
+    $(".markdown-body").on("click","a",function (e) {
+        e.preventDefault();
+        var _this = $(this);
+        if(_this.find("img").length == 0){
+            redirect(_this.attr("href"))
+        }
+    });
+
+    function redirect(href){
+        var hrefLower=href.toLowerCase();
+        if(hrefLower.indexOf("http://")==0 || hrefLower.indexOf("https://")==0 ){
+            window.open(href);
+        }else{
+            location.href=href;
+        }
+    }
+
+    show_copy_btn();
+    initLinkWithImage();
+
+    $(".tooltips").tooltip();
+    $("#qrcode").qrcode(location.href);
+
+    var clipboard = new ClipboardJS('.btn-copy',{
+        
+        target: function(trigger) {
+            return trigger.nextElementSibling;
+        }
+    });
+
+    clipboard.on('success', function(e) {
+        console.info('Copy Content：', e.text);
+        alertTips("success","代码复制成功",3000,"");
+    });
+
+    clipboard.on('error', function(e) {
+        console.log("Copy Error：",e);
+    });
+
+    $(".book-menu").click(function () {
+        $(".slidebar").trigger("click");
+    });
+   
+    $(".collapse-menu .collapse-node span").click(function (e) {
+        if($(this).parent().hasClass("collapse-hide")){
+            $(this).parent().removeClass("collapse-hide")
+        }else {
+            $(this).parent().addClass("collapse-hide")
+        }
+    })
+
+    $(".btn-theme").click(function(){
+        if($("html").hasClass("theme-dark")){
+            $("html").removeClass("theme-dark")
+            setCookie('theme-dark',false,-1000)
+        }else{
+            $("html").addClass("theme-dark")
+            setCookie('theme-dark',true,3600*24*365*1000)
+        }
+    })
+
+    function setCookie(name, value, time){
+        var exp = new Date();
+        exp.setTime(exp.getTime() + time);
+        document.cookie = name + "="+ escape (value) + ";path=/;expires=" + exp.toGMTString();
+    }
+});
+</script>
+<style>
+  .bot {
+    display: none;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 9999;
+    width: 450px;
+    height: 680px;
+    max-width: 80%;
+    min-width: 320px !important;
+    max-height: calc(100vh - 20px);
+    min-height: 320px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .bot #bot {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .bot .actions {
+    padding: 10px 10px;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+     
+     
+  }
+
+  .bot .actions a {
+    color: #333;
+    margin-left: 10px;
+  }
+
+  .bot .resize {
+    background-color: blue;
+  }
+
+  .bot .resize-width {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 10px;
+    height: 100%;
+    cursor: ew-resize;
+  }
+
+  .bot .resize-height {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 10px;
+    cursor: ns-resize;
+  }
+  @media screen and (max-width: 768px) {
+    .bot {
+      bottom: 0;
+      right: 0;
+    }
+    .manual-article {
+      margin-right: 0 !important;
+    }
+  }
+</style>
+<div class="bot">
+  
+  
+  <div class="actions">
+    <div class="left">
+      <span class="hidden-xs">欢迎使用AI助手</span>
+      <span class="visible-xs">AI助手</span>
+    </div>
+    <div class="right">
+      <a href="javascript:;" class="maximize" title="全屏放大AI助手会话窗口" data-placement="bottom"><i class="fa fa-window-maximize"></i> 全屏</a>
+      <a href="javascript:;" class="restore" title="缩小AI助手会话窗口" data-placement="bottom"><i class="fa fa-window-restore"></i> 缩小</a>
+      <a href="javascript:;" class="minus" title="关闭隐藏AI助手会话窗口" data-placement="bottom"><i class="fa fa-eye-slash"></i> 隐藏</a>
+      <a href="javascript:;" class="tooltips text-danger clean-messages" title="" data-placement="bottom" data-original-title="清空会话"><i class="fa fa-recycle"></i> 清空</a>
+    </div>
+  </div>
+  <iframe id="bot" allowfullscreen="" data-src="/chat/book?identify=LearnPython3TheHardWay&amp;title=%e7%ac%a8%e5%8a%9e%e6%b3%95%e5%ad%a6Python3%ef%bc%88Learn%20Python3%20The%20Hard%20Way%20%e4%b8%ad%e6%96%87%e7%89%88%ef%bc%89&amp;version=v2.13.6" src="./练习 23 字符串，字节和字符编码 - 《笨办法学Python3（Learn Python3 The Hard Way 中文版）》 - 书栈网 · BookStack_files/saved_resource.html"></iframe>
+</div>
+<script type="text/javascript">
+  $(function () {
+    
+    window.addEventListener('message', (event) => {
+      try{
+        const reference = event.data.reference
+        
+        const doc_id = reference.chapter_id
+        const target = $("#"+doc_id+">a")
+        if(target.length>0){
+          target.trigger('click')
+        }else{
+          
+          const href=reference.chapter_identify ? "/read/"+reference.book_identify+"/"+reference.chapter_identify :  "/read/"+reference.book_identify+"/read?page="+reference.page
+          if("LearnPython3TheHardWay"==reference.book_identify && "markdown"=="pdf"){
+            const iframe = $(".manual-reader iframe")
+            const iframeSrc = iframe.attr("src")
+            if (iframeSrc){
+              iframe.attr("src", iframeSrc.split("#")[0]+"#page="+reference.page)
+              return
+            }
+            window.location.href=href
+          }else{
+            window.open(href, '_blank');
+          }
+        }
+      }catch(error){console.log(error)}
+    });
+
+    
+    var bot = $(".bot");
+    var actionBar = bot.find(".actions");
+    var isDrag = false;
+    var botX = 0;
+    var botY = 0;
+    actionBar.mousedown(function (e) {
+      isDrag = true;
+      botX = e.pageX - bot.offset().left;
+      botY = e.pageY - bot.offset().top;
+    });
+
+    
+    $(".bot .minus").click(function () {
+      bot.hide();
+      $(".manual-article").removeAttr("style");
+    });
+
+    
+    $(".bot .maximize").click(function () {
+      bot.css({
+        width: "100%",
+        height: "100%",
+        "max-width": "100%",
+        "max-height": "100%",
+        left: 0,
+        top: 0,
+        "border-radius": 0,
+      });
+      $(this).hide();
+      $(".bot .restore").show();
+    });
+
+    function restore(){
+      bot.removeAttr("style");
+      bot.show();
+      $(".bot .restore").hide();
+      $(".bot .maximize").show();
+      $(".manual-article").css("margin-right", "460px");
+    }
+
+    $(".bot .restore").click(function () {
+      restore();
+    });
+
+    $(".show-bot").click(function () {
+      const user = {"role_name":"超级管理员","create_time":"0001-01-01T00:00:00Z","last_login_time":"0001-01-01T00:00:00Z"}
+      if(!user.member_id){
+        return alertTips("danger", "您未登录，请先登录", 3000, "")
+      }
+      if (!$(".bot #bot").attr("src")) {
+        $(".bot #bot").attr("src", $(".bot #bot").attr("data-src"));
+      }
+
+      
+      if (bot.is(":visible")) {
+        bot.hide();
+        
+        $(".manual-article").removeAttr("style");
+        return;
+      }
+      restore();
+    });
+
+    $(".clean-messages").click(function(){
+       try{
+        var iframe = $("#bot")[0].contentWindow;
+        console.log(iframe)
+        iframe.postMessage({
+          type: "clean",
+          identify: "LearnPython3TheHardWay"
+        }, "*");
+       }catch(err){console.log(err)}
+    })
+  });
+</script>
+
+
+</body></html>

@@ -1,0 +1,1637 @@
+/* Hea vily modified from the wonderful MVP.css v1.6.2 - https://github.com/andybrewer/mvp */
+@import 'color.css';
+
+/* You can remove this if you don't do any code in your project. */
+@import '/css/prism.css';
+
+body * {
+  /* This fixes the classic CSS braindead decision that children can explode out
+   * of their parent's box.
+   */
+  box-sizing: border-box;
+}
+
+aside {
+  display: block;
+  font-size: 1.2em;
+  line-height: var(--line-height);
+  padding: 1rem 1rem;
+  text-align: var(--justify-blockquote);
+  border-radius: var(--border-radius);
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--value3);
+}
+
+aside.warning {
+  background-color: var(--value7);
+  color: var(--color-text-inverted);
+}
+
+/* Layout */
+article aside {
+  background: var(--color-secondary-accent);
+  border-left: 4px solid var(--color-secondary);
+  padding: 0.01rem 0.8rem;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-family);
+  line-height: var(--line-height);
+  margin: 0;
+  overflow-x: hidden;
+  overflow-y: overlay;
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-scrollbar-thumb);
+}
+::-webkit-scrollbar-track-piece {
+  background: var(--color-scrollbar-track-piece);
+}
+
+header {
+  background-color: var(--color-bg-header);
+  color: var(--color-text-header);
+  display: flex;
+  justify-content: center;
+  text-align: var(--justify-important);
+}
+
+header,
+main {
+  margin: 0 auto;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0rem;
+}
+
+header.fixed {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 90;
+  height: var(--fixed-header-height);
+}
+
+main {
+  max-width: var(--width-content);
+  min-height: 800px;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+header.fixed + main {
+  margin-top: var(--fixed-header-height) !important;
+  min-height: unset;
+}
+
+footer {
+  background-color: var(--color-bg-header);
+  color: var(--color-text-header);
+  padding: 0px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+footer aside {
+  background-color: var(--color-bg-secondary);
+  width: 33%;
+  padding: 1em;
+}
+
+footer aside h4 {
+  margin-top: 0px;
+  margin-bottom: 0.5rem;
+}
+
+hr {
+  background-color: var(--color-bg-secondary);
+  border: none;
+  height: 1px;
+  margin: 1rem 0;
+}
+
+section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: var(--justify-important);
+}
+
+section aside {
+  border: 1px solid var(--color-bg-secondary);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow) var(--color-shadow);
+  margin: 1rem;
+  padding: 1.25rem;
+  width: var(--width-card);
+}
+
+section aside img {
+  max-width: 100%;
+}
+
+[hidden] {
+  display: none;
+}
+
+/* Headers */
+article header,
+div header,
+main header {
+  padding-top: 0;
+}
+
+header a.button {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+header nav {
+  max-width: var(--width-content);
+}
+
+header nav a {
+  /* this covers all links in the header nav */
+  font-size: var(--font-header-nav);
+  text-decoration-line: none;
+}
+
+header nav > a {
+  /* this is for just a tags in the header, not inside <ul> */
+  margin-top: 1rem;
+  margin-bottom: 0px;
+}
+
+header nav img {
+  margin: 1rem 0;
+}
+
+section header {
+  padding-top: 0;
+  width: 100%;
+}
+
+ol li,
+ul li {
+  padding: 0.2rem 0;
+}
+
+/* Nav */
+nav {
+  align-items: center;
+  display: flex;
+  font-weight: bold;
+  justify-content: space-between;
+  max-width: 90vw;
+  width: 100%;
+}
+
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+  margin-bottom: 0px;
+}
+
+nav ul li {
+  display: inline-block;
+  margin: 0 0.5rem;
+  position: relative;
+  text-align: left;
+}
+
+/* Nav Dropdown */
+nav ul li ul {
+  background: var(--color-bg);
+  border: 1px solid var(--color-bg-secondary);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow) var(--color-shadow);
+  display: none;
+  height: auto;
+  left: -2px;
+  padding: 0.5rem 1rem;
+  position: absolute;
+  top: 1.7rem;
+  white-space: nowrap;
+  width: auto;
+}
+
+nav ul li:hover ul {
+  display: block;
+}
+
+nav ul li ul li,
+nav ul li ul li a {
+  display: block;
+}
+
+/* Typography */
+code,
+samp {
+  background-color: var(--color-bg-code-text);
+  border-radius: var(--border-radius);
+  color: var(--color-text);
+  display: inline-block;
+  margin: 0 0.1rem;
+  padding: 0 0.5rem;
+}
+
+
+details {
+  margin: 1.3rem 0;
+}
+
+details summary {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: var(--line-height);
+  font-family: var(--font-title);
+  font-weight: var(--font-heading-weight);
+  font-size: var(--font-heading-size);
+  margin-top: 1rem;
+  margin-bottom: 0rem;
+}
+
+h1 {
+  font-size: calc(var(--font-heading-size) * 1.8);
+}
+
+h2 {
+  font-size: calc(var(--font-heading-size) * 1.5);
+}
+
+h3 {
+  font-size: calc(var(--font-heading-size) * 1.3);
+}
+
+h4 {
+  font-size: calc(var(--font-heading-size) * 1.2);
+}
+
+mark {
+  padding: 0.1rem;
+}
+
+p {
+  padding: 0;
+}
+
+pre code,
+pre samp {
+  display: block;
+  padding: 0.5rem 2rem;
+  white-space: pre-wrap;
+}
+
+small {
+  color: var(--color-text-secondary);
+}
+
+sup {
+  background-color: var(--color-secondary);
+  border-radius: var(--border-radius);
+  color: var(--color-bg);
+  font-size: xx-small;
+  font-weight: bold;
+  margin: 0.2rem;
+  padding: 0.2rem 0.3rem;
+  position: relative;
+  top: -2px;
+}
+
+/* Links */
+a {
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: var(--color-inactive);
+  color: var(--color-secondary);
+}
+
+a:hover {
+  filter: brightness(var(--hover-brightness));
+  text-decoration-style: solid;
+}
+
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+  text-decoration-line: none;
+  text-decoration-style: none;
+}
+
+button,
+input[type="button"],
+input[type="submit"] {
+  border-radius: var(--border-radius);
+  display: inline-block;
+  font-weight: bold;
+  line-height: var(--line-height);
+  padding: 0.5rem 1rem;
+}
+
+button,
+input[type="button"],
+input[type="submit"] {
+  font-family: var(--font-family);
+  font-size: var(--font-button-size);
+}
+
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover {
+  cursor: pointer;
+  filter: brightness(var(--hover-brightness));
+}
+
+a b,
+a strong,
+button,
+input[type="button"],
+input[type="submit"] {
+  background-color: var(--color);
+  border: 2px solid var(--color);
+  color: var(--color-bg);
+}
+
+a.button {
+  border: 2px solid var(--color);
+  border-radius: var(--border-radius);
+  color: var(--color);
+  display: inline-block;
+  padding: 1rem 2rem;
+}
+
+button > a {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  color: var(--color-text-inverted);
+  text-decoration: none !important;
+  filter: unset !important;
+}
+
+/* Images */
+img {
+  /* This fixes images that have a small margin on the bottom due to "descenders"
+   * from the 1990s when HTML was all about text and images were considered text.
+   */
+  display: block;
+  width: 100%;
+}
+
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+figure img {
+  max-width: 100%;
+}
+
+figure figcaption {
+  color: var(--color-text-secondary);
+}
+
+/* Forms */
+
+label {
+  font-weight: bold;
+  margin-bottom: 0.2rem;
+}
+
+button[disabled]:hover {
+  filter: none;
+}
+
+form {
+  display: flex;
+  max-width: var(--width-card-wide);
+  min-width: var(--width-card);
+  text-align: var(--justify-normal);
+  background-color: var(--color-bg);
+  flex-direction: column;
+}
+
+form buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+form error {
+  color: var(--color-error);
+  font-size: 0.8em;
+}
+
+form card top {
+  background-color: var(--color-bg-secondary);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+form card middle {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+input,
+label,
+select,
+textarea {
+  display: block;
+  font-size: var(--font-label-size);
+  width: 100%;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+input[type="checkbox"] + label,
+input[type="radio"] + label {
+  display: inline-block;
+  position: relative;
+  top: 1px;
+}
+
+input,
+select,
+textarea {
+  border: 1px solid var(--color-input-border);
+  background-color: var(--color-input-bg);
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+  padding: 0.4rem 0.8rem;
+}
+
+input[readonly],
+textarea[readonly] {
+  background-color: var(--color-bg-secondary);
+}
+
+form buttons input {
+  width: 7rem;
+  text-align: center;
+}
+
+button:disabled,
+input:disabled {
+  background: var(--color-bg-secondary);
+  color: var(--color-text-secondary);
+  cursor: not-allowed;
+}
+
+/* Tables */
+table {
+  border: 1px solid var(--color-bg-secondary);
+  border-radius: var(--border-radius);
+  border-spacing: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 0;
+  border-collapse: collapse;
+}
+
+table td,
+table th,
+table tr {
+  padding: 0.4rem 0.8rem;
+  text-align: var(--justify-important);
+}
+
+table thead {
+  background-color: var(--color);
+  border-collapse: collapse;
+  border-radius: var(--border-radius);
+  color: var(--color-bg);
+  margin: 0;
+  padding: 0;
+}
+
+table thead th:first-child {
+  border-top-left-radius: var(--border-radius);
+}
+
+table thead th:last-child {
+  border-top-right-radius: var(--border-radius);
+}
+
+table thead th:first-child,
+table tr td:first-child {
+  text-align: var(--justify-normal);
+}
+
+table tr:nth-child(even) {
+  background-color: var(--color-bg-tertiary);
+}
+
+/* Quotes */
+blockquote {
+  display: block;
+  line-height: var(--line-height);
+  margin: 1rem auto;
+  padding: 1rem 1rem;
+  text-align: var(--justify-blockquote);
+  border-radius: var(--border-radius);
+  background-color: var(--color-bg-secondary);
+}
+
+blockquote footer {
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg-secondary);
+  display: block;
+  font-size: small;
+  text-align: right;
+  line-height: var(--line-height);
+  padding: 1.5rem 0;
+}
+
+/* Have to place this here because svelte's global parsing doesn't work on sub-CSS inside media. */
+@media only screen and (max-width: 600px) {
+  code-view {
+    flex-direction: column !important;
+  }
+
+  code-view html-view {
+    max-width: 100% !important;
+  }
+
+  phone-warn {
+    display: flex !important;
+  }
+
+}
+
+@media only screen and (max-width: 800px) {
+  main {
+    height: unset;
+    min-height: unset;
+    max-height: unset;
+  }
+}
+
+.pulse {
+  border-radius: var(--border-radius);
+  box-shadow: 0 0 0 0 var(--color-pulse-1);
+  transform: scale(1);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 var(--color-pulse-2);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px var(--color-pulse-3);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 var(--color-pulse-4);
+  }
+}
+
+pre code {
+  background-color: var(--color-bg-code);
+  color: var(--gray9);
+  border-radius: var(--border-radius);
+  overflow-x: auto;
+}
+
+pre code span.error {
+  color: hsl(0, 100%, 80%);
+  text-decoration: underline;
+}
+
+/** Additional components added by Zed A. Shaw. */
+
+tile {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+}
+
+tile > left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+tile > middle {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-grow: 3;
+}
+
+tile > middle h4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+tile > right {
+  flex-shrink: 0;
+}
+
+tile > right button {
+  padding: 0.2rem;
+}
+
+card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+card top img {
+  padding: 0;
+  margin: 0;
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+card middle {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+card bottom {
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  border: 0;
+  box-shadow: unset;
+}
+
+card.tight middle {
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+card.tight bottom {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  border: 0;
+  box-shadow: unset;
+}
+
+card middle h4 {
+  margin: 0;
+}
+
+card bottom button-group > button:first-child {
+  border-radius: 0 0 0 var(--border-radius);
+}
+
+card bottom button-group > button:last-child:first-child {
+  border-radius: 0 0 0 0;
+}
+
+card bottom button-group > button:last-child {
+  border-radius: 0 0 var(--border-radius) 0;
+}
+
+card bottom button-group > button:only-child {
+  border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
+}
+
+button-group {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+button-group > button {
+  display: flex;
+  margin: 0;
+  padding: 0.5em;
+  width: 100%;
+  justify-content: space-evenly;
+  position: relative;
+  border-radius: 0 0 0 0;
+}
+
+
+button-group > button:first-child {
+  border-radius: var(--border-radius) 0 0 var(--border-radius);
+  background-color: var(--color-bg-secondary);
+  color: var(--color);
+  border: 2px solid var(--color-bg-inverted);
+}
+
+button-group > button:first-child > a {
+  color: var(--color) !important;
+}
+
+button-group > button:last-child {
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+}
+
+button-group > button:last-child:first-child {
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  background-color: var(--color-bg-inverted);
+  color: var(--color-text-inverted);
+}
+
+button-group > button:last-child:first-child > a {
+  color: var(--color-text-inverted) !important;
+}
+
+button-group.vertical {
+  flex-direction: column;
+}
+
+button-group.vertical > button:first-child {
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+button-group.vertical > button:last-child:first-child {
+  border-radius: 0 0 0 0;
+}
+
+button-group.vertical > button:last-child {
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+
+
+toast {
+  background-color: var(--color-error);
+  padding: 1rem;
+  color: var(--color-bg);
+  margin-top: 0.5rem;
+  box-shadow: 5px 5px 5px var(--value2);
+}
+
+toast a {
+    color: var(--color-text-inverted) !important;
+}
+
+toast-list {
+  box-sizing: border-box;
+  display: none;
+  flex-direction: column-reverse;
+  max-width: 400px;
+  position: fixed;
+  padding: 1rem;
+}
+
+toast-list.reverse {
+  flex-direction: column;
+}
+
+toast-list.bottom {
+  bottom: 0;
+}
+
+toast-list.top {
+  top: 0;
+}
+
+toast-list.left {
+  left: 0;
+}
+
+toast-list.right {
+  right: 0;
+}
+
+toast-list.active {
+  display: flex;
+}
+
+tabs {
+  margin-top: 1em;
+
+  /* added so you can see it in the display */
+  display: flex;
+  justify-content: space-evenly;
+}
+
+tabs > a {
+  text-decoration: none;
+  color: var(--color-text);
+  border-bottom: 1px solid var(--color-accent);
+  border-width: thin;
+  width: 100%;
+  text-align: center;
+  padding: 1rem 0 0.5rem;
+  font-size: var(--font-heading-size);
+  user-select: none;
+  border-top: 1px solid var(--color-border-tabs);
+  border-left: 1px solid var(--color-border-tabs);
+  border-right: 1px solid var(--color-border-tabs);
+  background-color: var(--gray0);
+}
+
+tabs > a:hover {
+  box-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  text-decoration: none;
+}
+
+tabs > a.active {
+  background-color: var(--color-bg-secondary);
+}
+
+tabs > a.active:hover {
+  filter: unset;
+  background-color: var(--color-bg-secondary);
+}
+
+tabs.vertical {
+  flex-direction: column;
+}
+
+tabs > a.active + component {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+tabs + component {
+  padding-top: 0.5rem;
+}
+
+badge {
+  background-color: var(--color-bg-secondary);
+  border-radius: 50%;
+  width: var(--width-badge);
+  height: var(--width-badge);
+  min-width: var(--width-badge);
+  min-height: var(--width-badge);
+  max-width: var(--width-badge);
+  max-height: var(--width-badge);
+  font-size: var(--font-size-badge);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--color-border);
+}
+
+.top-right {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.bottom-right {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+
+.top-left {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.bottom-left {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+}
+
+callout {
+  background-color: var(--color-bg-inverted);
+  color: var(--color-text-inverted);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow) var(--color-shadow);
+  margin-bottom: 0.5rem;
+}
+
+callout a {
+  color: var(--color-text-inverted);
+}
+
+callout.info a {
+  color: var(--color-text);
+}
+
+callout.info a:hover {
+  color: var(--color-text-inverted);
+  text-decoration: underline;
+  filter: unset;
+}
+
+callout a:hover {
+  color: var(--color-text-inverted);
+  text-decoration: underline;
+}
+
+callout.alert {
+  color: var(--invert-red);
+  text-shadow: var(--value1) 1px 1px;
+  background-color: var(--color-error);
+}
+
+callout.error {
+  color: var(--invert-red);
+  text-shadow: var(--value1) 1px 1px;
+  background-color: var(--color-error);
+}
+
+callout.success {
+  color: var(--invert-green);
+  text-shadow: var(--value1) 1px 1px;
+  background-color: var(--color-good);
+}
+
+callout.warning {
+  color: var(--invert-orange);
+  text-shadow: var(--value1) 1px 1px;
+  background-color: var(--color-warning);
+}
+
+callout.info {
+  color: var(--invert-yellow);
+  background-color: var(--color-info);
+}
+
+callout.info a {
+  color: var(--invert-yellow);
+}
+
+callout pre {
+  width: unset;
+}
+
+/* Use this around words you want to tooltip. */
+word {
+  position: relative;
+  text-decoration: underline dotted var(--color-inactive);
+}
+
+tooltip {
+  display: block;
+  opacity: 0;
+  position: absolute;
+  visibility: hidden;
+  color: var(--color);
+  background-color: var(--color-bg-secondary);
+  padding: 0.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow) var(--color-box-shadow);
+  border: 1px solid black;
+  transform: translate(90%, -90%);
+  top: 0;
+  right: 0;
+  z-index: 10000;
+  font-size: 0.8rem !important;
+  font-weight: normal;
+  tabindex="-1";
+}
+
+*:hover > tooltip {
+  /* you need to use visibility rather than display to avoid mouse over triggering on the tooltip as well as the icon. */
+  visibility: visible;
+  transition: opacity 0.6s ease-in-out;
+  opacity: 1;
+}
+
+tooltip.top-left {
+  left: 0;
+  right: unset;
+  transform: translate(-90%, -90%);
+}
+
+tooltip.bottom-left {
+  bottom: 0;
+  left: 0;
+  right: unset;
+  top: unset;
+  transform: translate(-90%, 90%);
+}
+
+tooltip.bottom-right {
+  bottom: 0;
+  top: unset;
+  transform: translate(90%, 90%);
+}
+
+tooltip.right {
+  top: unset;
+  transform: translate(90%);
+}
+
+tooltip.left {
+  top: unset;
+  right: unset;
+  left: 0;
+  transform: translate(-90%);
+}
+
+tooltip.top {
+  top: 0;
+  right: unset;
+  transform: translate(0%, -90%);
+}
+
+tooltip.bottom {
+  bottom: 0;
+  top: unset;
+  right: unset;
+  transform: translate(0%, 90%);
+}
+
+progress-meter {
+  background-color: var(--color-bg-tertiary);
+  display: flex;
+}
+
+progress-meter bar {
+  background-color: var(--color-bg-inverted);
+  color: var(--color-text-inverted);
+}
+
+/* Flipper is used to put two components and let them
+ * flip in and out on a rotation axis.
+ */
+flipper {
+  background-color: transparent;
+  perspective: 1000px;
+  display: block;
+  width: min-content;
+  min-height: min-content;
+}
+
+flipper inner {
+  position: relative;
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+flipper.flipped inner {
+  transform: rotateY(180deg);
+  position: relative;
+}
+
+flipper .front,
+.back {
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+flipper .front {
+  min-height: 11rem;
+}
+
+flipper .back {
+  transform: rotateY(180deg);
+  min-height: 11rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/* Switch implementation, mostly as a demo. */
+label.switch {
+  width: 4rem;
+  height: 2rem;
+  border: 1px solid var(--color-bg-inverted);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 0.2rem;
+  padding-right: 0.2rem;
+  justify-content: space-between;
+}
+
+label.switch::after {
+  width: 1.5rem;
+  height: 1.5rem;
+  background: var(--color-bg-tertiary);
+  content: "";
+}
+
+input + label.switch {
+  display: flex;
+}
+
+input:checked + label.switch {
+  flex-direction: row-reverse;
+  background: var(--color-bg-inverted);
+  background: var(--color-text-inverted);
+}
+
+input:checked + label.switch > inactive {
+  display: none;
+}
+
+input:checked + label.switch > active {
+  display: block;
+}
+
+label.switch > active {
+  display: flex;
+  flex-grow: 2;
+  align-items: center;
+  text-align: center;
+  user-select: none;
+}
+
+label.switch > inactive {
+  display: flex;
+  flex-grow: 2;
+  align-items: center;
+  text-align: center;
+}
+
+label.switch > inactive {
+  display: block;
+}
+
+label.switch > active {
+  display: none;
+}
+
+input.switch {
+  display: none;
+}
+
+label.medium {
+  width: 6rem;
+  height: 3rem;
+  font-size: 1.5rem;
+}
+
+label.medium::after {
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+label.large {
+  width: 8rem;
+  height: 4rem;
+  font-size: 2rem;
+}
+
+label.large::after {
+  width: 3rem;
+  height: 3rem;
+}
+
+hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+hero figure {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+hero:hover figure {
+  z-index: -1;
+}
+
+hero > cover {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-size: 4vw;
+  color: var(--color-overlay-text);
+  transition: background 0.5s ease-out;
+  opacity: 0;
+}
+
+hero:hover cover {
+  opacity: 1;
+  z-index: 1;
+}
+
+hero cover h1 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+hero cover:hover {
+  background: none;
+}
+
+hero cover:hover a.button {
+  opacity: 100%;
+}
+
+hero over a.buton {
+  color: var(--color-text-inverted);
+  border: 2px solid var(--value0);
+  text-shadow: none;
+  font-size: 0.5em;
+}
+
+hero.middle {
+  background-color: var(--color-bg-tertiary);
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  box-shadow: 0 8px 6px -6px black;
+  border-radius: var(--border-radius);
+}
+
+hero.middle p {
+  text-align: justify;
+  margin-left: 3rem;
+  margin-right: 3rem;
+}
+
+hero.middle button {
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--box-shadow) black;
+}
+
+hero.middle section aside {
+  background-color: var(--color-bg);
+}
+
+breadcrumb {
+  background-color: var(--color-bg-tertiary);
+  display: flex;
+  margin-top: 0rem;
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.3rem;
+}
+
+.stacked {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr;
+  grid-template-areas: "cover";
+}
+
+.stacked .layer {
+  width: 100%;
+  position: relative;
+  grid-area: cover;
+}
+
+.stacked .top {
+  z-index: 10;
+}
+
+/* Testing if this is actually available everywhere.  This will go away after a while unless
+ * I have to fix aspect-ratio. For now it's just for backward compatibility.
+ */
+[style*="--aspect-ratio"] {
+  aspect-ratio: var(--aspect-ratio);
+}
+
+main.centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 3rem;
+}
+
+main.fullscreen {
+  display: flex;
+  flex-direction: row !important;
+  padding: 0px !important;
+  margin: 0px !important;
+  height: 100vh !important;
+  max-height: 100vh !important;
+  min-height: 100vh !important;
+  max-width: unset;
+}
+
+main.horizontal {
+  flex-direction: row;
+}
+
+main.fullwidth {
+  padding: 0px !important;
+  margin: 0px !important;
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+}
+
+/* Specific to the client/Layout.svelte and rendered/Layout.svelte */
+
+/* CSS specific to the course system. */
+content > left {
+  position: relative;
+  display: block;
+  width: var(--width-sidebar);
+  min-width: var(--width-sidebar);
+  max-width: var(--width-sidebar);
+}
+
+content > right {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  width: var(--width-content);
+}
+
+content {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  padding-bottom: 1rem;
+}
+
+.html-result {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--value2);
+  border-radius: var(--border-radius);
+  width: 100%;
+  min-height: fit-content;
+  box-shadow: var(--box-shadow);
+  padding: 2rem;
+}
+
+
+@media only screen and (max-width: 500px) {
+  footer {
+    flex-direction: column;
+  }
+
+  footer aside {
+    width: 100%;
+  }
+}
+
+
+/* SIDEBAR */
+
+sidebar {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 5px 0 5px -5px var(--color-shadow);
+  position: unset;
+  height: 100%;
+  white-space: nowrap;
+  width: var(--width-sidebar);
+  min-width: var(--width-sidebar);
+  max-width: var(--width-sidebar);
+}
+
+sidebar items a {
+  text-decoration: none;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+sidebar items a:hover {
+  filter: unset;
+  background: var(--color-bg-tertiary);
+  color: var(--color-accent);
+}
+
+sidebar items a.active {
+  background: var(--color-bg-inverted);
+  color: var(--color-text-inverted);
+}
+
+sidebar top,
+sidebar bottom {
+  padding-left: 0.5rem;
+  background: var(--color-bg-secondary);
+}
+
+sidebar top {
+  border-bottom: 2px solid var(--color-border);
+}
+
+sidebar bottom {
+  border-top: 2px solid var(--color-border);
+}
+
+sidebar items {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 4;
+}
+
+sidebar items h3 {
+  padding-left: 0.3rem;
+}
+
+/* so useful I'm bringing them here too */
+shape {
+  --w: 100%;
+  --h: 100%;
+  --value: 4;
+
+  color: hsl(0, 0%, calc(var(--text) * 11%));
+  background-color: hsl(0, 0%, calc(var(--value) * 11%));
+  display: flex;
+  width: var(--w);
+  min-width: var(--w);
+  max-width: var(--w);
+  height: var(--h);
+  min-height: var(--h);
+  max-height: var(--h);
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+}
+
+.debug {
+  border: 1px solid red;
+}
+
+.debug > * {
+  border: 1px solid blue;
+}
+
+grid {
+  --cols: 1fr 1fr;
+  --rows: auto;
+  --gap: 0.5rem;
+
+  color: hsl(0, 0%, calc(var(--text) * 11%));
+  display: grid;
+  grid-gap: var(--gap);
+  grid-template-columns: var(--cols);
+  grid-template-rows: var(--rows);
+}
+
+#register-button {
+  align-self: baseline;
+  position: relative;
+  top: -6px;
+}
+
+#register-button button {
+  font-size: 0.9em;
+  background-color: unset;
+  color: var(--color-text-header);
+  padding: 3px;
+  border: 2px solid var(--color-text-header);
+}
+
+#register-button:hover button {
+  background-color: var(--value0);
+  color: var(--value7);
+  filter: unset;
+}
+
+.mobile {
+  display: none;
+}
+
+.mobile-hide {
+  display: unset;
+}
+
+@media only screen and (max-width: 800px) {
+  .mobile {
+    display: inherit;
+  }
+
+  .mobile-hide {
+    display: none;
+  }
+
+  #register-button {
+    top: unset;
+  }
+
+  pre {
+    width: unset;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  sidebar {
+    max-width: 100%;
+    min-width: 100%;
+    width: 100%;
+    max-height: min-content;
+    min-height: min-content;
+    height: min-content;
+    overflow-y: initial;
+  }
+  pre {
+    width: unset;
+  }
+}
+
+a.bare
+{
+  text-decoration: none;
+}
+
+@media only screen and (max-width: 700px) {
+  content {
+    width: 650px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  content {
+    width: 100%;
+    flex-direction: column-reverse;
+  }
+
+  content > right {
+    width: 100%;
+  }
+
+  content > left {
+    width: 100%;
+    max-width: unset;
+    min-width: unset;
+    box-shadow: unset;
+  }
+}
+
+toast > error {
+  color: var(--value9);
+  font-weight: bold;
+}
+
+card toast {
+  max-width: var(--width-card);
+}
+
+.strikethrough-diagonal {
+  position: relative;
+
+  &:before {
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 45%;
+    right: 0;
+    border-top: 3px solid;
+    border-color: red;
+    -webkit-transform: skewY(10deg);
+    -moz-transform: skewY(10deg);
+    transform: skewY(10deg);
+  }
+}
