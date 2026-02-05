@@ -27,10 +27,10 @@ five = 10 - 2 + 3 - 6#定义变量 five = 10-2+3-6
 print(f"This should be five:{five}")#输出格式化字符串，f-string方法
 
 def secret_formula(started):#定义 函数secret_formula秘密公式(started为参数):
-    jelly_beans = started *500#豆子
-    jars = jelly_beans / 1000#罐子
-    crates = jars / 100 #箱子
-    return jelly_beans,jars,crates#返回豆子，罐子，箱子
+    jelly_beans = int(started * 500)  # 豆子，确保为整数
+    jars = jelly_beans // 1000  # 罐子（整数除法）
+    crates = jars // 100  # 箱子（整数除法）
+    return jelly_beans, jars, crates
 
 
 start_point = 10000

@@ -8,16 +8,16 @@
 集合(set)    {1,2,3},{'apple','banana'}
 蟒蛇(Python)
 故障(虫子)(Bug)          srtip 去除空白字符串  lstrip去除左边空白字符串  rstrip去除右边空白字符串         left左边  right右边
-窗口(windows)
+窗口(windows)            break中断,分割    sort排序   sentence句子  
 下载(downloads)
 安装(install)
 成功(successful)
-退出(exit)
+退出(exit)(quit)
 练习 (practice 美式英语n/v) (practise英式英语v    practice n)   (exercise  n/v) (training 系统性练习) (rehearsal  彩排性练习)
 lots and lot 许多
 stuff 东西
-erase 清除  truncate
-hit   按下
+erase 清除  truncate      secret秘密  formula公式     beans 豆子      jars 罐子      crates 板条箱     intuition 直觉
+hit   按下      nor 也无法     comprehend 理解         discern 辨别          firmly 坚定地       planted 种植的         requires 需要         explanation 解释          lovely 可爱的        passion 激情         needs 需求        logic 逻辑        world 世界           
 target 目标
 calculate 计算
 creama 相机
