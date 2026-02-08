@@ -3,7 +3,7 @@
 字符串(str)      'Hello',"Python","'Mult-line"'
 列表(list)   [1,2,3],['a','b','c']
 字典(dict)   {'name':'Alice','age':30}           (dictionary)
-布尔值(bool)     Ture,False真，假
+布尔值(bool)     Ture,False真，假n               boolean logic expression布尔逻辑表达式
 元组(tuple)    (1,2,3),('a','b','c')
 集合(set)    {1,2,3},{'apple','banana'}
 蟒蛇(Python)
@@ -23,7 +23,7 @@ calculate 计算
 creama 相机
 cheese 奶酪
 box 盒子
-directly 直接地            
+directly 直接地            not(非)       and(与)        or(或)     
 function 函数
 combine加(add)         subtract减        multiply乘     divide除
 blanket 毯子
@@ -100,3 +100,23 @@ W          w         /ˈdʌbljuː/
 X          x         /eks/
 Y          y         /waɪ/
 Z          z         /zed/（英式）或 /ziː/（美式）
+真值表默写:           ()非与或
+1:
+门名称            输出结果
+not True           False
+not False          True
+
+True and True      True
+True and False     False
+False and True     False
+False and False    False
+
+True or True      True
+True or False     True
+False or True     True
+False or False    False
+
+not(True or False)  False
+not(True or True)   False
+not(False or True)  False
+not(False or False)  True
