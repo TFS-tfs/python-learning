@@ -19,7 +19,7 @@ stuff 东西
 erase 清除  truncate      secret秘密  formula公式     beans 豆子      jars 罐子      crates 板条箱     intuition 直觉
 hit   按下      nor 也无法     comprehend 理解         discern 辨别          firmly 坚定地       planted 种植的         requires 需要         explanation 解释          lovely 可爱的        passion 激情         needs 需求        logic 逻辑        world 世界           
 target 目标
-calculate 计算       bear熊
+calculate 计算       bear熊         apricots杏子
 creama 相机
 cheese 奶酪
 box 盒子
