@@ -20,11 +20,24 @@ elements = []#定义elements存储空列表
 
 #then use the range funcion to do 0 to 5 counts然后使用range函数进行0~5的计数
 for i in range(0,6):
-    print(f"Adding {i} to the list.")
-#append is a function that lists understand append是列表支持的一个函数，用于在末尾添加元素
-    elements.append(i)
+    print(f"Adding {i} to the list.")#
+#append is a function that lists understand.             append是列表支持的一个函数，用于在末尾添加元素
+    elements.append(i)#所以，这个循环的作用是: 给空列表里面添加0，1，2，3，4，5
 
 #now we can print them out too现在我们可以把它们打印出来
 for i in elements:
-    print(f"Element was: {i}")
-    
+    print(f"Element was: {i}")#这里会输出0，1，2，3，4，5
+#使用if,elif,else或者是定义函数？也可以替代循环，不过会麻烦:
+elements = []
+i = 0
+def for_loop(i):
+    if i < 5:
+        elements.append(i)
+        print(elements)
+        i += 1
+        for_loop(i)
+    else:
+        return(None)
+for_loop(i)
+  
+  
