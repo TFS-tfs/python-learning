@@ -1,6 +1,6 @@
 整数(int)     1，-5，100
 浮点数(float)        3.14,-0.001,2.0
-字符串(str)      'Hello',"Python","'Mult-line"'
+字符串(str)      'Hello',"Python","'Mult-line"'        gfeedy贪婪的     gold黄金    bunch一束
 列表(list)   [1,2,3],['a','b','c']
 字典(dict)   {'name':'Alice','age':30}           (dictionary)
 布尔值(bool)     Ture,False真，假n               boolean logic expression布尔逻辑表达式
