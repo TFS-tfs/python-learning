@@ -1,14 +1,14 @@
 整数(int)     1，-5，100
 浮点数(float)        3.14,-0.001,2.0
-字符串(str)      'Hello',"Python","'Mult-line"'        gfeedy贪婪的     gold黄金    bunch一束
-列表(list)   [1,2,3],['a','b','c']
-字典(dict)   {'name':'Alice','age':30}           (dictionary)
+字符串(str)      'Hello',"Python","'Mult-line"'        greedy贪婪的     gold黄金    bunch一束
+列表(list)   [1,2,3],['a','b','c']    resources资源     intergration集成   
+字典(dict) {'name','Alice','age':30} (dictionary)
 布尔值(bool)     Ture,False真，假n               boolean logic expression布尔逻辑表达式
 元组(tuple)    (1,2,3),('a','b','c')    top顶部   bottom底部
 集合(set)    {1,2,3},{'apple','banana'}       Unpack解包   several几个  issues问题   mismatch不匹配 cotain包含 elements元素   conflict冲突 parameter参数 variable变量
 蟒蛇(Python)   miss缺少   actually实际  implemented实现  correct修正   version版本  proper正确的   statements语句  progess进度  each time每次    增加
 故障(虫子)(Bug)          srtip 去除空白字符串  lstrip去除左边空白字符串  rstrip去除右边空白字符串         left左边  right右边
-窗口(windows)            break中断,分割    sort排序   sentence句子  
+窗口(windows)            break中断,分割    sort排序   sentence句子    extension扩展
 下载(downloads)
 安装(install)
 成功(successful)

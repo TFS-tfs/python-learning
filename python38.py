@@ -1,4 +1,4 @@
-from sys import exit#从sys模块取出exit函数用于终止胸痛
+from sys import exit#从sys模块取出exit函数用于终止程序
 
 def gold_room():#定义函数gold_room,无参数
     print("This room is full of gold.How much do you take?")#这个房间充满了黄金，你能拿走多少？
